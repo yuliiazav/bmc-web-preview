@@ -1,0 +1,53 @@
+<header class="bg-white flex flex-col pt-10 pl-6 pr-10 gap-4 text-[#151515]">
+    <div class="flex items-center justify-end gap-3">
+        <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2 px-4 py-2 border border-[#C7C7C7] rounded-full font-normal text-sm bg-white">
+                <span class="material-symbols-outlined text-red-600">cancel</span>
+                Health
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 border border-[#C7C7C7] rounded-full font-normal text-sm bg-white">
+                <span class="material-symbols-outlined">power_settings_new</span>
+                Power
+            </div>
+            <div class="flex items-center gap-2 px-4 py-2 border border-[#C7C7C7] rounded-full font-normal text-sm bg-white">
+                <span class="material-symbols-outlined">vignette</span>
+                appHeader.remotehost
+            </div>
+        </div>
+        <button class="flex items-center gap-2 px-4 py-2 border border-[#C7C7C7] rounded-full font-normal text-sm hover:bg-gray-100
+                transition-colors">
+            <span class="material-symbols-outlined">refresh</span>
+            Refresh
+        </button>
+        <div class="relative">
+            <input type="checkbox" id="user-menu-toggle" class="peer hidden"/>
+            <label
+                for="user-menu-toggle"
+                class="flex items-center px-2 py-2 border border-[#C7C7C7] rounded-full font-normal text-sm cursor-pointer
+                    hover:bg-gray-100 transition-colors peer-checked:border-gray-400 select-none">
+                <span class="material-symbols-outlined text-2xl leading-none mr-2">
+                    account_circle
+                </span>
+                <span class="text-[#151515]">Username</span>
+                <span class="material-symbols-outlined transition-transform peer-checked:rotate-180 ml-1">
+                    arrow_drop_down
+                </span>
+            </label>
+            <div class="w-[138px] hidden peer-checked:flex absolute gap-2 right-0 mt-1 flex-col bg-white border border-gray-100
+                    rounded-[20px] shadow-md z-50 py-4 px-4">
+                <a
+                    href="#"
+                    class="font-normal text-[12px] leading-[21px] text-[#151515] hover:text-black hover:bg-[#688CBA1A] rounded
+                        transition-colors">
+                    Profile settings
+                </a>
+                <a
+                    href="#"
+                    class="font-normal text-[12px] leading-[21px] text-[#B1380B] hover:bg-[#688CBA1A] rounded transition-colors">
+                    Log out
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="w-full border-b border-[#D0D5DD]"></div>
+</header>

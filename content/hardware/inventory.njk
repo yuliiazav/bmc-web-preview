@@ -1,0 +1,91 @@
+{% extends "../../index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-9">Inventory and LEDs</h1>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">LED light control</h2>
+            <div class="bg-white border border-[#E0E0E0] rounded-md p-4 flex gap-[210px]">
+                <div>
+                    <span class="block text-sm font-medium text-[#151515] leading-[1.5] mb-1">Power status</span>
+                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
+                </div>
+                <div>
+                    <span class="block text-sm font-medium text-[#151515] leading-[1.5] mb-1">System identify LED</span>
+                    <div class="flex items-center gap-2">
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer"/>
+                            <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px]"></div>
+                        </label>
+                        <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-12">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Quick links to hardware components</h2>
+            <div class="flex gap-4 overflow-x-auto pb-2">
+                {% set components = [
+                    { name: 'System', icon: 'dvr', color: '#2B7FFF' },
+                    { name: 'Power Supplies', icon: 'power', color: '#FE9A00' },
+                    { name: 'Processors', icon: 'memory', color: '#AD46FF' },
+                    { name: 'DIMM Slot', icon: 'memory_alt', color: '#00BBA7' },
+                    { name: 'Chassis', icon: 'inventory_2', color: '#6A7282' },
+                    { name: 'BMC Manager', icon: 'settings_suggest', color: '#615FFF' },
+                    { name: 'Fans', icon: 'toys_fan', color: '#20C1DF' },
+                    { name: 'Assemblies', icon: 'layers', color: '#00C950' }
+                ] %}
+                {% for item in components %}
+                    <div class="min-w-[110px] bg-white border border-white rounded-[16px] p-3 flex flex-col items-center justify-center gap-3
+                            shadow cursor-pointer hover:border-[#688CBA] transition-colors">
+                        <span class="material-symbols-outlined text-[24px]" style="color: {{ item.color }}">{{ item.icon }}</span>
+                        <span class="text-sm font-medium text-[#151515] leading-[1.5] text-center">{{ item.name }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mb-10">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">System</h2>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Hardware type</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">SYS02</td>
+                            <td class="px-4 py-4 text-sm">GPU Expansion Board</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#DCA614] text-[#DCA614]">
+                                    <span class="material-symbols-outlined text-[16px]">warning</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Warning</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Slot #3</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px]"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">On</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
