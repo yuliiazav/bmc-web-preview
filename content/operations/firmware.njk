@@ -1,0 +1,57 @@
+{% extends "../../index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-6">Firmware</h1>
+        <section class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">BMC and server</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white border border-[#E0E0E0] rounded-md overflow-hidden">
+                    <div class="px-4 py-3 border-b border-[#E0E0E0]">
+                        <span class="text-sm font-medium text-[#151515] leading-[1.5]">Running image</span>
+                    </div>
+                    <div class="px-4 py-3">
+                        <p class="text-sm font-medium text-[#151515] leading-[1.5] mb-1">Version</p>
+                        <p class="text-sm font-normal text-[#151515] leading-[1.5]">v09.05-21-ge66c49cdfe-dirty</p>
+                    </div>
+                </div>
+                <div class="bg-white border border-[#E0E0E0] rounded-md overflow-hidden">
+                    <div class="px-4 py-3 border-b border-[#E0E0E0]">
+                        <span class="text-sm font-medium text-[#151515] leading-[1.5]">Backup image</span>
+                    </div>
+                    <div class="px-4 py-3 flex flex-col justify-between gap-7">
+                        <div>
+                            <p class="text-sm font-medium text-[#151515] leading-[1.5] mb-1">Version</p>
+                            <p class="text-sm font-normal text-[#151515] leading-[1.5]">--</p>
+                        </div>
+                        <button class="flex items-center gap-2 text-[#707070] hover:text-[#688CBA] text-xs leading-none transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+                            Switch to running
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Update firmware</h2>
+            <div class="max-w-[410px] bg-[#F0F3F8] p-6">
+                <h3 class="text-base font-medium leading-[21px] text-[#151515] mb-2">Upload Firmware File</h3>
+                <p class="text-sm font-normal leading-[1.5] text-[#151515] mb-4">Drag & drop or click to add</p>
+                <div class="flex gap-3">
+                    <button
+                        type="button"
+                        class="px-[62px] py-3 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-none font-normal rounded-full
+                            transition-colors">
+                        Add file
+                    </button>
+                    <button
+                        type="button"
+                        disabled="disabled"
+                        class="px-[46px] py-3 bg-transparent border border-[#688CBA] text-[#688CBA] text-sm leading-none font-normal
+                            rounded-full">
+                        Start update
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
