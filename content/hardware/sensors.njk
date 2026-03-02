@@ -1,0 +1,83 @@
+{% extends "../../index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-7">Sensors</h1>
+        <div class="flex justify-between items-center mb-3 pr-2">
+            <div class="relative max-w-[200px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
+                <input
+                    type="text"
+                    placeholder="Search for sensors"
+                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
+                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
+            </div>
+            <div class="relative inline-block">
+                <input type="checkbox" id="filter-menu-toggle" class="peer hidden"/>
+                <label
+                    for="filter-menu-toggle"
+                    class="flex items-center gap-2 text-[#151515] cursor-pointer select-none hover:text-black transition-colors
+                        peer-checked:text-[#6090C2]">
+                    <span class="material-symbols-outlined">tune</span>
+                    <span class="text-sm font-normal leading-none tracking-normal">Filter</span>
+                </label>
+                <div class="hidden peer-checked:flex absolute right-0 mt-2 w-[180px] flex-col bg-white rounded-[20px] shadow z-50 p-4 gap-2">
+                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Status</span>
+                    <div class="flex flex-col gap-2">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="checkbox" class="w-4 h-4 rounded border-[#C7C7C7] cursor-pointer"/>
+                            <span class="text-[12px] leading-[21px] font-normal text-[#151515] group-hover:text-black">OK</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="checkbox" class="w-4 h-4 rounded border-[#C7C7C7] cursor-pointer"/>
+                            <span class="text-[12px] leading-[21px] font-normal text-[#151515] group-hover:text-black">Warning</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="checkbox" class="w-4 h-4 rounded border-[#C7C7C7] cursor-pointer"/>
+                            <span class="text-[12px] leading-[21px] font-normal text-[#151515] group-hover:text-black">Critical</span>
+                        </label>
+                    </div>
+                    <button type="button" class="text-left text-[12px] leading-[18px] font-normal text-[#6090C2] hover:underline mt-2">
+                        Clear all
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                    <tr>
+                        <th class="px-2 py-5 w-12 text-center">
+                            <input type="checkbox" class="w-4 h-4 rounded border-[#C7C7C7]"/>
+                        </th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Name</th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Status</th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Lower critical</th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Lower warning</th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Current value</th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Upper warning</th>
+                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Upper critical</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#E0E0E0]">
+                    <tr class="hover:bg-[#FFFFFF] transition-colors">
+                        <td class="px-2 py-4 text-center">
+                            <input type="checkbox" class="w-4 h-4 rounded border-[#C7C7C7]"/>
+                        </td>
+                        <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">ADC0 12V</td>
+                        <td class="px-4 py-4">
+                            <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#B1380B] text-[#B1380B]">
+                                <span class="material-symbols-outlined text-[16px]">cancel</span>
+                                <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Critical</span>
+                            </div>
+                        </td>
+                        <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">10.2 V</td>
+                        <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">10.8 V</td>
+                        <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">8.31 V</td>
+                        <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">13.2 V</td>
+                        <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">13.8 V</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
