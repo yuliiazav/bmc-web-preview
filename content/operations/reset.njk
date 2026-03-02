@@ -1,0 +1,45 @@
+{% extends "../../index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-2">Factory reset</h1>
+        <p class="text-base font-normal text-[#4D4D4D] leading-none mb-10">
+            These functions do not perform a secure delete of any sensitive data.
+        </p>
+        <div class="flex flex-col gap-7 mb-10">
+            <span class="text-sm leading-[125%] font-normal text-[#4D4D4D]">Reset options</span>
+            <label class="flex items-start gap-4 cursor-pointer group mb-2">
+                <div class="relative flex items-center justify-center">
+                    <input type="radio" name="reset-option" class="peer sr-only" checked="checked"/>
+                    <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
+                    <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="text-base font-medium text-[#151515] leading-none">Reset server settings only</span>
+                    <span class="text-sm font-normal text-[#4D4D4D] leading-none">
+                        Resets firmware settings including: Platform keystore, partition NVRAM, and partition configurations.
+                    </span>
+                </div>
+            </label>
+            <label class="flex items-start gap-4 cursor-pointer group">
+                <div class="relative flex items-center justify-center">
+                    <input type="radio" name="reset-option" class="peer sr-only"/>
+                    <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
+                    <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="text-base font-medium text-[#151515] leading-none">Reset BMC and server settings</span>
+                    <span class="text-sm font-normal text-[#4D4D4D] leading-[145%] max-w-[670px]">
+                        In addition to server settings, this option resets BMC settings, including: all BMC account data, all changed passwords,
+                        all policies, LDAP configurations, network addresses, and time of day.
+                    </span>
+                </div>
+            </label>
+        </div>
+        <button
+            type="button"
+            class="px-[69px] py-3 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-[120%] font-medium rounded-[28px]
+                transition-colors shadow-sm">
+            Reset
+        </button>
+    </div>
+{% endblock %}
