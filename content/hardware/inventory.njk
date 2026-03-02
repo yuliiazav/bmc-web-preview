@@ -17,7 +17,10 @@
                             <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
                                 peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
                                 after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
-                                after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px]"></div>
+                                after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                before:transition-opacity"></div>
                         </label>
                         <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
                     </div>
@@ -46,7 +49,7 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="mb-10">
+        <div class="mb-14">
             <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">System</h2>
             <div class="bg-white border border-[#E0E0E0] overflow-hidden">
                 <table class="w-full text-left border-collapse">
@@ -62,7 +65,7 @@
                     <tbody class="divide-y divide-[#E0E0E0]">
                         <tr>
                             <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">SYS02</td>
-                            <td class="px-4 py-4 text-sm">GPU Expansion Board</td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">GPU Expansion Board</td>
                             <td class="px-4 py-4">
                                 <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#DCA614] text-[#DCA614]">
                                     <span class="material-symbols-outlined text-[16px]">warning</span>
@@ -77,9 +80,335 @@
                                         <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
                                             peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
                                             after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
-                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px]"></div>
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
                                     </label>
                                     <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">On</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">BMC manager</h2>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">BMC-01</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#3D7317] text-[#3D7317]">
+                                    <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Ok</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Controller 0</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Chassis</h2>
+            <div class="relative mb-3 max-w-[200px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
+                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 w-10"></th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-center align-middle">
+                                <span class="material-symbols-outlined text-[#707070] text-[24px] cursor-pointer">keyboard_arrow_down</span>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">AST2600_EVB</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#DCA614] text-[#DCA614]">
+                                    <span class="material-symbols-outlined text-[16px]">warning</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Warning</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Rack A-12</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">DIMM Slot</h2>
+            <div class="relative mb-3 max-w-[200px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
+                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">State</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">AST2600_EVB</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#3D7317] text-[#3D7317]">
+                                    <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Ok</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Active – 16 GB DDR4</td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Slot A1</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">On</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Fans</h2>
+            <div class="relative mb-3 max-w-[200px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
+                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Name</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Part number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Serial number</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">FAN-1</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#B1380B] text-[#B1380B]">
+                                    <span class="material-symbols-outlined text-[16px]">cancel</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Critical</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">FAN-X92-A</td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">SN-FAN-4820</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Power Supplies</h2>
+            <div class="relative mb-3 max-w-[200px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
+                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">PSU-1</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#DCA614] text-[#DCA614]">
+                                    <span class="material-symbols-outlined text-[16px]">warning</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Warning</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Bay #1</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-14">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Processors</h2>
+            <div class="relative mb-3 max-w-[200px]">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
+                <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
+                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
+            </div>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Health</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">State</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">CPU-1</td>
+                            <td class="px-4 py-4">
+                                <div class="inline-flex items-center gap-1 px-2 py-1 rounded-full border border-[#3D7317] text-[#3D7317]">
+                                    <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                    <span class="text-xs font-normal uppercase leading-[1.1] tracking-normal">Ok</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Active – 3.2GHz</td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Socket A</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mb-[30px]">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Assemblies</h2>
+            <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                        <tr>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">ID</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Part number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Location number</th>
+                            <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Identify LED</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#E0E0E0]">
+                        <tr>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">ASM-CTRL-01</td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">P/N-8421-CTRL</td>
+                            <td class="px-4 py-4 text-sm font-normal text-[#151515] leading-[1.3] tracking-normal">Frame #A2</td>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-2">
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer"/>
+                                        <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                            peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                            after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                            after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                            before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                            before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                            before:transition-opacity"></div>
+                                    </label>
+                                    <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">Off</span>
                                 </div>
                             </td>
                         </tr>
