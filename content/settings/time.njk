@@ -1,0 +1,87 @@
+{% extends "../../index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-5">Date and time</h1>
+        <div class="flex gap-2 bg-[#F0F3F8] border-l-[3px] border-[#688CBA] px-4 py-6 mb-[30px] max-w-[685px]">
+            <span class="material-symbols-outlined text-[#688CBA] text-[21px]">info</span>
+            <span class="text-base font-normal text-[#151515] leading-[21px]">
+                To change how date and time are displayed (either UTC or browser offset) throughout the application, visit Profile
+                Settings
+            </span>
+        </div>
+        <div class="grid grid-cols-2 gap-[128px] mb-14 max-w-[400px]">
+            <div>
+                <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">Date</p>
+                <p class="text-sm font-normal leading-[1.5] text-[#151515]">2025-10-20</p>
+            </div>
+            <div>
+                <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">24-hour time</p>
+                <p class="text-sm font-normal leading-[1.5] text-[#151515]">17:01:40 UTC</p>
+            </div>
+        </div>
+        <section>
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-6">Configure settings</h2>
+            <div class="flex flex-col gap-6 mb-12">
+                <label class="flex items-center gap-4 cursor-pointer group w-fit">
+                    <div class="relative flex items-center justify-center">
+                        <input type="radio" name="time-option" class="peer sr-only" checked="checked"/>
+                        <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                    </div>
+                    <span class="text-base font-normal text-[#151515] leading-none">Manual</span>
+                </label>
+                <div class="grid grid-cols-2 gap-6 pl-9 max-w-[450px]">
+                    <div class="flex flex-col gap-2">
+                        <span class="text-sm font-medium leading-[1.5] text-[#151515]">Date</span>
+                        <span class="text-xs font-normal leading-[1.5] text-[#151515]">YYYY-MM-DD</span>
+                        <div class="relative">
+                            <span class="absolute left-5 top-1/2 -translate-y-1/2 material-symbols-outlined text-[14px] text-[#6E6E73]">
+                                calendar_today</span>
+                            <input
+                                type="text"
+                                placeholder="2025-10-20"
+                                class="w-full pl-[42px] pr-5 py-3 bg-[#F3F3F3] border border-[#EBEBED] rounded-md text-sm font-normal leading-none
+                                    text-[#151515] focus:ring-1 focus:ring-[#688CBA] outline-none placeholder-[#4D4D4D]"/>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <span class="text-sm font-medium leading-[1.5] text-[#151515]">24-hour time (UTC)</span>
+                        <span class="text-xs font-normal leading-[1.5] text-[#151515]">HH:MM</span>
+                        <input
+                            type="text"
+                            placeholder="17:05"
+                            class="w-full px-5 py-3 bg-[#F3F3F3] border border-[#EBEBED] rounded-md text-sm font-normal leading-none text-[#151515]
+                                focus:ring-1 focus:ring-[#688CBA] outline-none placeholder-[#4D4D4D]"/>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-6 mb-10">
+                <label class="flex items-center gap-4 cursor-pointer group w-fit">
+                    <div class="relative flex items-center justify-center">
+                        <input type="radio" name="time-option" class="peer sr-only"/>
+                        <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                    </div>
+                    <span class="text-base font-normal text-[#151515] leading-none">NPT</span>
+                </label>
+                <div class="grid grid-cols-3 gap-6 pl-9 max-w-[669px]">
+                    {% for i in range(1, 4) %}
+                        <div class="flex flex-col gap-2">
+                            <span class="text-xs font-normal leading-[1.5] text-[#151515]">Server {{ i }}</span>
+                            <input
+                                type="text"
+                                class="w-full px-5 py-3 bg-white border border-[#DBDBDB] rounded-md text-sm font-normal leading-none text-[#151515]
+                                    focus:ring-1 focus:ring-[#688CBA] outline-none"/>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button
+                type="button"
+                class="px-11 py-3 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-[120%] font-medium rounded-[28px]
+                    transition-colors">
+                Save settings
+            </button>
+        </section>
+    </div>
+{% endblock %}
