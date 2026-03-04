@@ -1,0 +1,146 @@
+{% extends "../../index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-2">Network</h1>
+        <p class="text-base font-normal text-[#4D4D4D] leading-none mb-14">
+            Configure BMC network settings
+        </p>
+        <section class="mb-16">
+            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Network settings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-[152px] max-w-[1100px]">
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-sm font-medium leading-[1.5] text-[#151515]">Hostname</span>
+                        <span class="material-symbols-outlined text-[14px] text-[#688CBA] cursor-pointer">edit</span>
+                    </div>
+                    <span class="text-sm font-normal leading-[1.5] text-[#151515]">ast2600-default</span>
+                </div>
+                {% set switches = [
+                    { label: "Use domain name", id: "domain" },
+                    { label: "Use DNS servers", id: "dns" },
+                    { label: "Use NTP servers", id: "ntp" }
+                ] %}
+                {% for switch in switches %}
+                    <div class="flex flex-col gap-1">
+                        <span class="text-sm font-medium leading-[1.5] text-[#151515]">{{ switch.label }}</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer"/>
+                            <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                before:transition-opacity"></div>
+                            <span class="ml-2 text-sm font-normal leading-[1.5] text-[#151515]">Enabled</span>
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <div class="border border-[#EBEBED] overflow-hidden mb-12">
+            <div class="bg-[#F0F4F9]">
+                <div class="flex p-2">
+                    <button class="w-[93px] py-3 text-sm leading-[1.5] font-medium text-[#1F1F1F] border-b-[3px] border-[#0066CC]">
+                        bond0
+                    </button>
+                    <button class="w-[93px] py-3 text-sm font-normal text-[#707070] hover:bg-white/50 border-b border-[#C7C7C7] transition-colors">
+                        eth0
+                    </button>
+                    <button class="w-[93px] py-3 text-sm font-normal text-[#707070] hover:bg-white/50 border-b border-[#C7C7C7] transition-colors">
+                        eth
+                    </button>
+                </div>
+            </div>
+            <div class="px-6 py-9">
+                <div class="grid grid-cols-2 gap-[152px] mb-[72px] max-w-[400px]">
+                    <div>
+                        <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">Link status</p>
+                        <p class="text-sm font-normal leading-[1.5] text-[#151515]">NoLink</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">Speed (mbps)</p>
+                        <p class="text-sm font-normal leading-[1.5] text-[#151515]">65535</p>
+                    </div>
+                </div>
+                <div class="mb-9">
+                    <h3 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Interface settings</h3>
+                    <div class="grid grid-cols-2 gap-[152px] max-w-[400px]">
+                        <div>
+                            <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">FQDN</p>
+                            <p class="text-sm font-normal leading-[1.5] text-[#151515]">ast2600-default</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="text-sm font-medium leading-[1.5] text-[#151515]">MAC address</span>
+                                <span class="material-symbols-outlined text-[14px] text-[#688CBA] cursor-pointer">edit</span>
+                            </div>
+                            <p class="text-sm font-normal leading-[1.5] text-[#151515]">72:47:7e:cc:7f:d6</p>
+                        </div>
+                    </div>
+                </div>
+                <hr class="border-[#EBEBED] mb-9"/>
+                <div class="mb-14">
+                    <h3 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Interface settings</h3>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-sm font-medium leading-[1.5] text-[#151515]">DHCP</span>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer"/>
+                            <div class="w-[40px] h-[24px] bg-white border border-[#C7C7C7] rounded-full peer peer-focus:outline-none
+                                peer-checked:bg-[#688CBA] peer-checked:border-[#688CBA] transition-all /* Circle (14x14) */ after:content-['']
+                                after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] after:bg-[#707070] after:rounded-full
+                                after:transition-all /* Click state */ peer-checked:after:bg-white peer-checked:after:translate-x-[18px] /* Checkmark */
+                                before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] before:top-[6px]
+                                before:text-white before:text-[12px] before:leading-none before:opacity-0 peer-checked:before:opacity-100
+                                before:transition-opacity"></div>
+                            <span class="ml-2 text-sm font-normal leading-[1.5] text-[#151515]">Enabled</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="mb-14">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-sm font-medium leading-[1.5] text-[#151515]">IPv4 addresses</h4>
+                        <button class="flex items-center gap-2 px-4 py-2.5 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-[120%] font-medium
+                                rounded-[28px]">
+                            <span class="material-symbols-outlined text-[16px]">add</span>
+                            Add static IPv4 address
+                        </button>
+                    </div>
+                    <table class="w-full text-left text-sm border border-[#EBEBED] overflow-hidden">
+                        <thead class="bg-[#F0F4F9] text-[#151515] leading-none font-medium">
+                            <tr>
+                                <th class="px-6 py-5">IP address</th>
+                                <th class="px-6 py-5">Gateway</th>
+                                <th class="px-6 py-5">Subnet mask</th>
+                                <th class="px-6 py-5">Address origin</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#EBEBED] leading-[130%]">
+                            <tr>
+                                <td class="px-6 py-4">192.168.1.105</td>
+                                <td class="px-6 py-4">192.168.1.1</td>
+                                <td class="px-6 py-4">255.255.255.0</td>
+                                <td class="px-6 py-4">Static</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="max-w-[600px]">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-xl font-medium text-[#1D1D1F] leading-[130%]">Static DNS</h4>
+                        <button class="flex items-center gap-2 px-4 py-2.5 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-[120%] font-medium
+                                rounded-[28px]">
+                            <span class="material-symbols-outlined text-[16px]">add</span>
+                            Add IP address
+                        </button>
+                    </div>
+                    <div class="border border-[#EBEBED] overflow-hidden">
+                        <div class="bg-[#F0F4F9] px-6 py-5 text-sm leading-none font-medium">IP address</div>
+                        <div class="px-6 py-4 text-sm leading-[130%] border-b border-[#EBEBED]">1.1.1.1</div>
+                        <div class="px-6 py-4 text-sm leading-[130%]">8.8.8.8</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
