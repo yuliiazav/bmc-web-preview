@@ -1,5 +1,6 @@
 index.html
 .eleventyignore
 node_modules/
+_site/
 package-lock.json
 npm-debug.log*
