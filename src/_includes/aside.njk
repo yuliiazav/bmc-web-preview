@@ -1,0 +1,120 @@
+{% macro navItem(id, label, iconPath, isDropdown = false, subItems = [], href = "#", currentPageUrl = "") %}
+    {# Check if we are currently on this page (for regular links) #}
+    {% set isCurrentPage = (currentPageUrl == href) %}
+
+    {# Check if any subpage is currently active (for dropdowns) #}
+    {% set hasActiveChild = false %}
+    {% if isDropdown %}
+        {% for item in subItems %}
+            {% if currentPageUrl == item.href %}
+                {% set hasActiveChild = true %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <div>
+        {# If the item has an active child, check the checkbox via JavaScript or Nunjucks logic #}
+        <input type="checkbox" id="{{ id }}" class="peer hidden" {% if hasActiveChild %}checked{% endif %}/>
+
+        <label for="{{ id }}" 
+            class="relative w-full flex items-center justify-between pl-4 pr-3 py-3 cursor-pointer rounded-lg transition-all
+                   {% if isCurrentPage or hasActiveChild %}
+                        bg-brand-blue text-white
+                   {% else %}
+                        text-custom-aside-text hover:text-black hover:bg-brand-blue/10
+                   {% endif %}">
+
+            {% if not isDropdown %}
+                <a href="{{ href }}" class="absolute inset-0 z-10"></a>
+            {% endif %}
+
+            <div class="flex items-center gap-2">
+                <span class="w-5 h-5 flex items-center justify-center fill-current {% if isCurrentPage or hasActiveChild %}text-white{% endif %}">
+                    {% if iconPath %}
+                        {% include iconPath %}
+                    {% endif %}
+                </span>
+                <span class="text-sm font-medium">{{ label }}</span>
+            </div>
+
+            {% if isDropdown %}
+                <span class="material-symbols-outlined text-2xl leading-none transition-transform peer-checked:rotate-180">
+                    expand_more
+                </span>
+            {% endif %}
+        </label>
+
+        {% if isDropdown %}
+            <div class="hidden peer-checked:flex flex-col space-y-1 mt-1">
+                {% for item in subItems %}
+                    {% set isSubActive = (currentPageUrl == item.href) %}
+                    <a href="{{ item.href }}" 
+                       class="pl-10 py-3 text-sm leading-[18px] font-normal rounded-lg transition-colors
+                              {% if isSubActive %}
+                                bg-brand-blue/10 text-black font-semibold
+                              {% else %}
+                                text-custom-aside-text hover:text-black hover:bg-brand-blue/10
+                              {% endif %}">
+                        {{ item.text }}
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+<aside class="w-72 bg-custom-aside-bg border-r border-custom-divider flex flex-col h-full">
+    <div class="pt-9 px-4 flex flex-col items-center">
+        <div class="mb-4">
+            {% include "src/assets/images/logo.svg" %}
+        </div>
+        <div class="w-full border-b border-custom-divider"></div>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto pt-10 px-4 space-y-2">
+        <div class="space-y-2">
+
+            {{ navItem("menu-overview", "Overview", "src/assets/icons/icon-overview.svg", false, [], "/overview/", page.url) }}
+
+            {{ navItem("menu-logs", "Logs", "src/assets/icons/icon-logs.svg", true, [
+                { text: "Event logs", href: "/event-logs/" },
+                { text: "POST code logs", href: "/postcodelogs/" }
+            ], "#", page.url) }}
+
+            {{ navItem("menu-hardware", "Hardware Status", "src/assets/icons/icon-hardware.svg", true, [
+                { text: "Inventory and LEDs", href: "/inventory-and-leds/" },
+                { text: "Sensors", href: "/sensors/" }
+            ], "#", page.url) }}
+
+            {{ navItem("menu-operations", "Operations", "src/assets/icons/icon-operations.svg", true, [
+                { text: "Factory reset", href: "/factory-reset/" },
+                { text: "KVM", href: "/kvm/" },
+                { text: "Key clear", href: "/key-clear/" },
+                { text: "Firmware", href: "/firmware/" },
+                { text: "Manage BMC", href: "/manage-bmc/" },
+                { text: "SOL console", href: "/sol-console/" },
+                { text: "Server power operations", href: "/server-power-operations/" },
+                { text: "Virtual media", href: "/virtual-media/" }
+            ], "#", page.url) }}
+
+            {{ navItem("menu-settings", "Settings", "src/assets/icons/icon-settings.svg", true, [
+                { text: "Date and time", href: "/date-and-time/" },
+                { text: "Network", href: "/network/" },
+                { text: "Power restore policy", href: "/power-restore-policy/" },
+                { text: "SNMP Alerts", href: "/snmp-alerts/" }
+            ], "#", page.url) }}
+
+            {{ navItem("menu-security", "Security and access", "src/assets/icons/icon-security.svg", true, [
+                { text: "Sessions", href: "/sessions/" },
+                { text: "LDAP", href: "/ldap/" },
+                { text: "User management", href: "/user-management/" },
+                { text: "Policies", href: "/policies/" },
+                { text: "Certificates", href: "/certificates/" }
+            ], "#", page.url) }}
+
+            {{ navItem("menu-resources", "Resource management", "src/assets/icons/icon-resource.svg", true, [
+                { text: "Power", href: "/power/" }
+            ], "#", page.url) }}
+        </div>
+    </nav>
+</aside>

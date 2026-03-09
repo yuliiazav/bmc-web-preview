@@ -1,0 +1,60 @@
+<header class="bg-white flex flex-col pt-9 pl-6 pr-10 gap-2 text-custom-text">
+    <div class="flex items-center justify-end gap-3">
+        <div class="flex items-center gap-3">
+            {% set badgeClass = "flex items-center gap-2 px-4 py-2 border border-custom-border rounded-full font-normal text-sm bg-white cursor-pointer hover:bg-custom-light-bg transition-colors" %}
+
+            <div class="{{ badgeClass }}">
+                <span class="flex items-center justify-center">
+                    {% include "src/assets/icons/icon-health-red.svg" %}
+                </span> 
+                Health
+            </div>
+
+            <div class="{{ badgeClass }}">
+                <span class="flex items-center justify-center">
+                    {% include "src/assets/icons/icon-power-off.svg" %}
+                </span>
+                Power
+            </div>
+
+            <div class="{{ badgeClass }}">
+                <span class="flex items-center justify-center">
+                    {% include "src/assets/icons/icon-appHeader-remotehost.svg" %}
+                </span>
+                appHeader.remotehost
+            </div>
+        </div>
+
+        <div class="{{ badgeClass }}">
+            <span class="flex items-center justify-center">
+                {% include "src/assets/icons/icon-refresh.svg" %}
+            </span>
+            Refresh
+        </div>
+
+        <div class="relative">
+            <input type="checkbox" id="user-menu-toggle" class="peer hidden"/>
+            <label for="user-menu-toggle" 
+                   class="flex items-center px-2 py-2 gap-2 border border-custom-border rounded-full font-normal text-sm cursor-pointer hover:bg-custom-light-bg transition-colors select-none">
+                <span class="flex items-center justify-center">
+                    {% include "src/assets/icons/icon-avatar.svg" %}
+                </span>
+                <span>Username</span>
+                <span class="material-symbols-outlined transition-transform peer-checked:rotate-180 ml-1">
+                    arrow_drop_down
+                </span>
+            </label>
+
+            <div class="w-[138px] hidden peer-checked:flex absolute gap-2 right-0 mt-1 flex-col bg-white border border-gray-100 rounded-[20px] shadow-md z-50 py-4 px-4">
+                <a href="#" class="text-[12px] text-custom-text hover:text-custom-accent transition-colors">
+                    Profile settings
+                </a>
+                <a href="#" class="text-[12px] text-red-600 hover:font-bold transition-all">
+                    Log out
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full border-b border-custom-divider mt-1"></div>
+</header>
