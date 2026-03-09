@@ -1,4 +1,8 @@
-{% extends "../../index.njk" %}
+---
+permalink: "/inventory-and-leds/"
+---
+
+{% extends "../../_includes/index.njk" %}
 {% block content %}
     <div class="mx-auto">
         <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-9">Inventory and LEDs</h1>
@@ -31,14 +35,39 @@
             <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-4">Quick links to hardware components</h2>
             <div class="flex gap-4 overflow-x-auto pb-2">
                 {% set components = [
-                    { name: 'System', icon: 'dvr', color: '#2B7FFF' },
-                    { name: 'Power Supplies', icon: 'power', color: '#FE9A00' },
-                    { name: 'Processors', icon: 'memory', color: '#AD46FF' },
-                    { name: 'DIMM Slot', icon: 'memory_alt', color: '#00BBA7' },
-                    { name: 'Chassis', icon: 'inventory_2', color: '#6A7282' },
-                    { name: 'BMC Manager', icon: 'settings_suggest', color: '#615FFF' },
-                    { name: 'Fans', icon: 'toys_fan', color: '#20C1DF' },
-                    { name: 'Assemblies', icon: 'layers', color: '#00C950' }
+                    {
+                        name: 'System',
+                        icon: 'dvr',
+                        color: '#2B7FFF'
+                    }, {
+                        name: 'Power Supplies',
+                        icon: 'power',
+                        color: '#FE9A00'
+                    }, {
+                        name: 'Processors',
+                        icon: 'memory',
+                        color: '#AD46FF'
+                    }, {
+                        name: 'DIMM Slot',
+                        icon: 'memory_alt',
+                        color: '#00BBA7'
+                    }, {
+                        name: 'Chassis',
+                        icon: 'inventory_2',
+                        color: '#6A7282'
+                    }, {
+                        name: 'BMC Manager',
+                        icon: 'settings_suggest',
+                        color: '#615FFF'
+                    }, {
+                        name: 'Fans',
+                        icon: 'toys_fan',
+                        color: '#20C1DF'
+                    }, {
+                        name: 'Assemblies',
+                        icon: 'layers',
+                        color: '#00C950'
+                    }
                 ] %}
                 {% for item in components %}
                     <div class="min-w-[110px] bg-white border border-white rounded-[16px] p-3 flex flex-col items-center justify-center gap-3

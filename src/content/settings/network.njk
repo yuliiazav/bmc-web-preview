@@ -1,4 +1,7 @@
-{% extends "../../index.njk" %}
+---
+permalink: /network/
+---
+{% extends "../../_includes/index.njk" %}
 {% block content %}
     <div class="mx-auto">
         <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-2">Network</h1>
@@ -16,9 +19,16 @@
                     <span class="text-sm font-normal leading-[1.5] text-[#151515]">ast2600-default</span>
                 </div>
                 {% set switches = [
-                    { label: "Use domain name", id: "domain" },
-                    { label: "Use DNS servers", id: "dns" },
-                    { label: "Use NTP servers", id: "ntp" }
+                    {
+                        label: "Use domain name",
+                        id: "domain"
+                    }, {
+                        label: "Use DNS servers",
+                        id: "dns"
+                    }, {
+                        label: "Use NTP servers",
+                        id: "ntp"
+                    }
                 ] %}
                 {% for switch in switches %}
                     <div class="flex flex-col gap-1">

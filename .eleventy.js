@@ -7,8 +7,8 @@ module.exports = function (eleventyConfig) {
   return {
     dir: {
       input: "src", // Input folder
-      includes: "_includes", // Folder for aside, header, index.njk
       output: "_site", // Folder where the site is built
+      includes: "_includes", // Folder for aside, header, index.njk
     },
   };
 };
