@@ -1,0 +1,16 @@
+{% macro toggle_switch(id = '', label_text = 'Off', checked = false) %}
+    <div class="flex items-center gap-2">
+        <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" {% if id %}id="{{ id }}"{% endif %} class="sr-only peer" {% if checked %}checked{% endif %}/>
+            <div class="w-[40px] h-[24px] bg-white border border-custom-border rounded-full peer peer-focus:outline-none
+                    peer-checked:bg-brand-blue peer-checked:border-brand-blue transition-all 
+                    after:content-[''] after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] 
+                    after:bg-[#707070] after:rounded-full after:transition-all 
+                    peer-checked:after:bg-white peer-checked:after:translate-x-[18px] 
+                    before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute 
+                    before:left-[6px] before:top-[6px] before:text-white before:text-[12px] 
+                    before:leading-none before:opacity-0 peer-checked:before:opacity-100 before:transition-opacity"></div>
+        </label>
+        <span class="text-sm font-normal text-custom-text leading-[21px] tracking-normal">{{ label_text }}</span>
+    </div>
+{% endmacro %}

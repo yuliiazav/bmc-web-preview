@@ -1,0 +1,28 @@
+{% macro status_badge(type = 'Ok') %}
+    {% set config = {
+        'Ok': {
+            'border': 'border-green-900',
+            'icon': 'src/assets/icons/icon-status-ok-green.svg',
+            'text': 'Ok'
+        },
+        'Critical': {
+            'border': 'border-red-700',
+            'icon': 'src/assets/icons/icon-status-critical-red.svg',
+            'text': 'Critical'
+        },
+        'Warning': {
+            'border': 'border-yellow-600',
+            'icon': 'src/assets/icons/icon-warning-rounded.svg',
+            'text': 'Warning'
+        }
+    } %}
+
+    {# render the component #}
+    {% set s = config[type] %}
+    <div class="inline-flex w-22 items-center gap-1 px-2 py-1 rounded-full border {{ s.border }}">
+        <span class="flex items-center justify-center w-4 h-4 shrink-0">
+            {% include s.icon %}
+        </span>
+        <span class="text-[12px] font-normal tracking-wider text-custom-text">{{ s.text }}</span>
+    </div>
+{% endmacro %}

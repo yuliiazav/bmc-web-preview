@@ -2,6 +2,8 @@
 permalink: "/overview/"
 ---
 {% extends "../_includes/index.njk" %}
+{# The toggle switch is a macro defined in src/_includes/macros/toggle.njk #}
+{% from "macros/toggle.njk" import toggle_switch %}
 
 {% block content %}
     <div class="mx-auto">
@@ -134,15 +136,19 @@ permalink: "/overview/"
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Critical</p>
                             <div class="flex items-center gap-2">
-                                <span class="text-sm font-normal text-custom-text leading-none">12</span>
-                                <span class="material-symbols-outlined text-red-600 text-[16px]">cancel</span>
+                                <span class="text-sm font-normal text-custom-text">12</span>
+                                <span class="flex items-center justify-center w-4 h-4 shrink-0">
+                                    {% include "src/assets/icons/icon-health-red.svg" %}
+                                </span>
                             </div>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Warning</p>
                             <div class="flex items-center gap-2">
-                                <span class="text-sm font-normal text-custom-text leading-none">36</span>
-                                <span class="material-symbols-outlined text-amber-500 font-fill text-[16px]">error</span>
+                                <span class="text-sm font-normal text-custom-text">36</span>
+                                <span class="flex items-center justify-center w-4 h-4 shrink-0">
+                                    {% include "src/assets/icons/icon-warning-rounded.svg" %}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -156,20 +162,8 @@ permalink: "/overview/"
                     </div>
                     <div class="px-4 py-3">
                         <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">System identify LED</p>
-                        <div class="flex items-center gap-2">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" class="sr-only peer"/>
-                                <div class="w-[40px] h-[24px] bg-white border border-custom-border rounded-full peer peer-focus:outline-none
-                                    peer-checked:bg-brand-blue peer-checked:border-brand-blue transition-all
-                                    after:content-[''] after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] 
-                                    after:bg-[#707070] after:rounded-full after:transition-all 
-                                    peer-checked:after:bg-white peer-checked:after:translate-x-[18px]
-                                    before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute before:left-[6px] 
-                                    before:top-[6px] before:text-white before:text-[12px] before:leading-none before:opacity-0 
-                                    peer-checked:before:opacity-100 before:transition-opacity"></div>
-                            </label>
-                            <span class="text-sm font-normal text-custom-text leading-[1.5]">Off</span>
-                        </div>
+                        {# Toggle switch #}
+                        {{ toggle_switch(id="identifyLedToggle", label_text="Off", checked=false) }}
                     </div>
                 </div>
 

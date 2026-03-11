@@ -1,23 +1,23 @@
 @import "tailwindcss";
-@import "tailwindcss";
 @theme {
-  /* Fonts */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* Custom Colors */
-  --color-brand-blue: #688cba;
-  --color-custom-text: #151515;
-  --color-custom-light-bg: #f0f3f8;
-  --color-custom-aside-bg: #ffffff;
-  --color-custom-aside-text: #4d4d4d;
-  --color-custom-accent: #0054b3;
-  --color-custom-border: #c7c7c7;
-  --color-custom-divider: #d0d5dd;
+    /* Fonts */
+    --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* Custom Colors */
+    --color-brand-blue: #688cba;
+    --color-custom-text: #151515;
+    --color-custom-light-bg: #f0f3f8;
+    --color-custom-aside-bg: #ffffff;
+    --color-custom-aside-text: #4d4d4d;
+    --color-custom-accent: #0054b3;
+    --color-custom-border: #c7c7c7;
+    --color-custom-divider: #ebebed;
 }
+
 
 /* Additional rule for the base styles to be applied to entire document */
 
 @layer base {
-  body {
-    @apply font-sans antialiased text-custom-text;
-  }
+    body {
+        @apply font-sans antialiased text-custom-text;
+    }
 }

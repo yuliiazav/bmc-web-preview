@@ -1,0 +1,12 @@
+{% macro search_input(id, placeholder = "Search...", class = "") %}
+    <div class="relative mb-3 max-w-[200px] {{ class }}">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-custom-aside-text flex items-center justify-center w-4 h-4">
+            {% include "src/assets/icons/icon-searchLoop.svg" %}
+        </span>
+        <input type="text" 
+           id="{{ id }}" 
+           placeholder="{{ placeholder }}"
+           class="w-[200px] border border-custom-divider rounded-full pl-10 py-3 text-xs leading-none font-normal text-custom-text 
+                  placeholder-custom-aside-text focus:outline-none focus:border-brand-blue transition-colors search-input-field"/>
+    </div>
+{% endmacro %}

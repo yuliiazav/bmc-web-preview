@@ -2,76 +2,74 @@
 permalink: /postcode-logs/
 ---
 {% extends "../../_includes/index.njk" %}
+{% from "macros/search.njk" import search_input %}
+
 {% block content %}
     <div class="mx-auto">
-        <div class="flex justify-between items-start mb-12">
-            <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-2">Event logs</h1>
+        <div class="flex justify-between items-center mb-12">
+            <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-2">POST code logs</h1>
+            {# Date filter #}
             <div class="flex gap-6">
                 <div class="flex flex-col gap-2">
-                    <span class="text-xs font-normal text-[#151515] leading-[1.5]">From date</span>
+                    <span class="text-md font-normal text-custom-text leading-[1.5]">From date</span>
                     <div class="relative">
-                        <input
-                            type="text"
-                            placeholder="YYYY-MM-DD"
-                            class="w-[200px] border border-[#EBEBED] rounded-full px-[42px] py-3 text-xs leading-none font-normal text-[#151515]
-                                placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
-                        <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">
+                        <input type="text" placeholder="YYYY-MM-DD"
+                            class="w-[200px] border border-custom-divider rounded-full px-[42px] py-3 text-xs leading-none font-normal text-custom-text 
+                                   placeholder-custom-aside-text focus:outline-none focus:border-brand-blue transition-colors"/>
+                        <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-custom-aside-text text-[14px]">
                             calendar_today</span>
                     </div>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <span class="text-xs font-normal text-[#151515] leading-[1.5]">To date</span>
+                    <span class="text-md font-normal text-custom-text leading-[1.5]">To date</span>
                     <div class="relative">
-                        <input
-                            type="text"
-                            placeholder="YYYY-MM-DD"
-                            class="w-[200px] border border-[#EBEBED] rounded-full px-[42px] py-3 text-xs leading-none font-normal text-[#151515]
-                                placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
-                        <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-[#707070] text-[14px]">
+                        <input type="text" placeholder="YYYY-MM-DD"
+                            class="w-[200px] border border-custom-divider rounded-full px-[42px] py-3 text-xs leading-none font-normal text-custom-text 
+                                   placeholder-custom-aside-text focus:outline-none focus:border-brand-blue transition-colors"/>
+                        <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-custom-aside-text text-[14px]">
                             calendar_today</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="flex justify-between items-start mb-3">
-            <div class="relative max-w-[200px]">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#707070] text-[16px]">search</span>
-                <input
-                    type="text"
-                    placeholder="Search"
-                    class="w-[200px] border border-[#EBEBED] rounded-full pl-10 py-3 text-xs leading-none font-normal text-[#151515]
-                        placeholder-[#707070] focus:outline-none focus:border-[#688CBA] transition-colors"/>
-            </div>
+            {# Search #}
+            {{ search_input(id="postcodeLogSearch", placeholder="Search logs") }}
+
             <div class="flex items-center gap-9">
-                <button class="flex items-center gap-2 text-[#151515] hover:text-red-600 transition-colors">
-                    <span class="material-symbols-outlined">delete</span>
-                    <span class="text-sm font-normal leading-none tracking-normal">Delete all</span>
+                <button class="flex items-center gap-2 align-center text-custom-text hover:text-red-600 transition-colors">
+                    <span class="flex items-center justify-center w-5 h-5 shrink-0 cursor-pointer  hover:text-red-500 transition-colors">
+                        {% include "src/assets/icons/icon-delete.svg" %}
+                    </span>
+                    <span class="text-md font-normal leading-none tracking-normal">Delete all</span>
                 </button>
-                <button class="flex items-center gap-2 bg-[#688CBA] text-white px-4 py-2 rounded-[28px] hover:bg-[#56769d] transition-colors">
-                    <span class="text-sm font-medium leading-[1.2] tracking-normal">Export all</span>
-                    <span class="material-symbols-outlined">description</span>
+                <button class="flex items-center gap-2 bg-brand-blue text-white px-4 py-2 rounded-[28px] hover:bg-custom-accent transition-colors">
+                    <span class="text-md font-medium leading-[1.2] tracking-normal">Export all</span>
+                    <span class="flex items-center justify-center w-5 h-5 shrink-0 cursor-pointer text-white  transition-colors">
+                        {% include "src/assets/icons/icon-download.svg" %}
+                    </span>
                 </button>
             </div>
         </div>
-        <div class="bg-white border border-[#E0E0E0] overflow-hidden">
+        <div class="bg-white border border-custom-divider overflow-hidden">
             <table class="w-full text-left border-collapse">
-                <thead class="bg-[#F0F4F9] border-b border-[#E0E0E0]">
+                <thead class="bg-custom-light-bg border-b border-custom-divider sticky top-0 z-10">
                     <tr>
                         <th class="px-2 py-5 w-14 h-16"></th>
-                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Created</th>
-                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Time stamp offset</th>
-                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">Boot count</th>
-                        <th class="px-4 py-5 text-sm font-medium text-[#151515] leading-none tracking-normal">POST code</th>
+                        <th class="px-4 py-5 text-sm font-medium text-custom-text leading-none tracking-normal">Created</th>
+                        <th class="px-4 py-5 text-sm font-medium text-custom-text leading-none tracking-normal">Time stamp offset</th>
+                        <th class="px-4 py-5 text-sm font-medium text-custom-text leading-none tracking-normal">Boot count</th>
+                        <th class="px-4 py-5 text-sm font-medium text-custom-text leading-none tracking-normal">POST code</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-[#E0E0E0]">
-                    <tr class="hover:bg-[#FFFFFF] transition-colors">
+                <tbody class="divide-y divide-custom-divider">
+                    <tr class="hover:bg-white transition-colors">
                         <td class="px-2 py-4 text-center">
-                            <input type="checkbox" class="w-4 h-4 rounded border-[#C7C7C7]"/>
+                            <input type="checkbox" class="w-4 h-4 rounded border-custom-border"/>
                         </td>
                         <td
                             colspan="4"
-                            class="px-4 py-4 text-sm font-normal text-center text-[#151515] leading-[21px] break-words tracking-normal">
+                            class="px-4 py-4 text-sm font-normal text-center text-custom-text leading-[21px] break-words tracking-normal">
                             No items available
                         </td>
                     </tr>
@@ -79,16 +77,16 @@ permalink: /postcode-logs/
             </table>
         </div>
         <div class="flex justify-center items-center gap-2 mt-7">
-            <span class="material-symbols-outlined text-[#707070] cursor-pointer hover:text-[#151515]">keyboard_double_arrow_left</span>
-            <span class="material-symbols-outlined text-[#707070] cursor-pointer hover:text-[#151515]">keyboard_arrow_left</span>
+            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-custom-text">keyboard_double_arrow_left</span>
+            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-custom-text">keyboard_arrow_left</span>
             <input
                 type="text"
                 value="3"
-                class="w-[46px] h-[37px] border border-[#EBEBED] rounded-[6px] text-center text-sm font-normal text-[#151515]
-                    focus:outline-none focus:border-[#688CBA] transition-colors"/>
-            <span class="text-sm font-normal text-[#151515] leading-[21px] tracking-normal">of 27</span>
-            <span class="material-symbols-outlined text-[#707070] cursor-pointer hover:text-[#151515]">keyboard_arrow_right</span>
-            <span class="material-symbols-outlined text-[#707070] cursor-pointer hover:text-[#151515]">keyboard_double_arrow_right</span>
+                class="w-[46px] h-[37px] border border-custom-divider rounded-[6px] text-center text-sm font-normal text-custom-text
+                    focus:outline-none focus:border-brand-blue transition-colors"/>
+            <span class="text-sm font-normal text-custom-text leading-[21px] tracking-normal">of 27</span>
+            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-custom-text">keyboard_arrow_right</span>
+            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-custom-text">keyboard_double_arrow_right</span>
         </div>
     </div>
 {% endblock %}
