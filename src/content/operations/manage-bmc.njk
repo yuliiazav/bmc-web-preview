@@ -4,45 +4,51 @@ permalink: /manage-bmc/
 {% extends "../../_includes/index.njk" %}
 {% block content %}
     <div class="mx-auto">
-        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-4">Manage BMC</h1>
+        <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-4">Manage BMC</h1>
+
         <div class="mb-7 gap-1">
-            <p class="text-sm font-medium text-[#151515] leading-[1.5] mb-1">
+            <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">
                 Last BMC reboot
             </p>
-            <p class="text-sm font-normal text-[#151515] leading-[1.5]">2025-10-17 15:00:39 UTC</p>
+            <p class="text-sm font-normal text-custom-text leading-[1.5]">2025-10-17 15:00:39 UTC</p>
         </div>
-        <p class="text-sm font-normal text-[#151515] leading-[1.5] mb-14 max-w-[620px]">
+
+        <p class="text-sm font-normal text-custom-text leading-[1.5] mb-14 max-w-[620px]">
             When you reboot the BMC, your web browser loses contact with the BMC for several minutes. When the BMC is back online,
             you may need to log in again.
         </p>
+
         <div class="flex gap-4 mb-5">
             <button
                 type="button"
-                class="px-11 py-3 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-none font-normal rounded-full
+                class="px-11 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-none font-normal rounded-full
                     transition-colors shadow-sm">
                 Reboot BMC
             </button>
+
             <button
                 type="button"
-                class="px-5 py-3 bg-[#F0F3F8] hover:bg-[#E0E7F0] text-[#688CBA] text-sm leading-none font-normal rounded-full
+                class="px-5 py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm leading-none font-normal rounded-full
                     transition-colors">
                 Remote PC power OFF
             </button>
             <button
                 type="button"
-                class="px-5 py-3 bg-[#F0F3F8] hover:bg-[#E0E7F0] text-[#688CBA] text-sm leading-none font-normal rounded-full
+                class="px-5 py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm leading-none font-normal rounded-full
                     transition-colors">
                 Remote PC power ON
             </button>
         </div>
+
         <div class="mb-12">
-            <p class="text-sm font-medium text-[#151515] leading-[1.5] mb-1">Current State Remote PC</p>
-            <p class="text-sm font-normal text-[#151515] leading-[1.5]">Off</p>
+            <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Current State Remote PC</p>
+            <p class="text-sm font-normal text-custom-text leading-[1.5]">Off</p>
         </div>
+
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 max-w-[1100px]">
             {% for i in range(1, 9) %}
-                <div class="bg-white rounded-[16px] px-5 py-4 flex flex-col items-center shadow-[0_2px_9px_0_rgba(41,41,41,0.08)]">
-                    <span class="text-sm font-normal text-[#151515] leading-[1.5] mb-5">Port {{ i }}</span>
+                <div class="bg-custom-aside-bg rounded-[16px] px-5 py-4 flex flex-col items-center shadow-[0_2px_9px_0_rgba(41,41,41,0.08)]">
+                    <span class="text-sm font-normal text-custom-text leading-[1.5] mb-5">Port {{ i }}</span>
                     <div class="flex flex-col gap-3 w-full">
                         <button class="w-full py-3 bg-[#23C45F] hover:bg-[#219150] text-white text-sm leading-none font-normal rounded-xl
                                 transition-colors">
@@ -52,7 +58,7 @@ permalink: /manage-bmc/
                                 transition-colors">
                             Off
                         </button>
-                        <button class="w-full py-3 bg-[#F0F3F8] hover:bg-[#E0E7F0] text-[#688CBA] text-sm leading-none font-normal rounded-xl
+                        <button class="w-full py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm leading-none font-normal rounded-xl
                                 transition-colors">
                             T
                         </button>

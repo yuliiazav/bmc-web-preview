@@ -1,0 +1,54 @@
+---
+permalink: /power/
+---
+{% extends "../../_includes/index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-2">Power</h1>
+        <p class="text-base font-normal text-custom-aside-text leading-none mb-9">
+        Set a power cap to keep power consumption at or below the specified value in watts
+        </p>
+
+        <section class="mb-6">
+            <div class="flex flex-col gap-6">
+                <div>
+                    <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Current power consumption</p>
+                    <p class="text-sm font-normal leading-[1.5] text-custom-text">Not available</p>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Power cap setting</p>
+
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" 
+               style="accent-color: var(--color-custom-accent);"
+               class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors
+                      focus:ring-[var(--color-custom-accent)] focus:ring-offset-0">
+                        <span class="text-sm font-normal leading-[1.5] text-custom-text">Apply power cap</span>
+                    </label>
+                </div>
+                <div>
+                    <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Power cap value (in watts)</p>
+                    <p class="text-xs font-normal leading-[1.5] text-custom-aside-text mb-3">
+            Value must be between 1 and 10000
+        </p>
+                    <input 
+            type="number" 
+            min="1" 
+            max="10000" 
+            placeholder="Enter value"
+            class="w-[300px] px-4 py-2.5 bg-white border border-custom-divider rounded-lg text-sm text-custom-text 
+                   placeholder:text-custom-aside-text focus:outline-none focus:border-[var(--color-brand-blue)] 
+                   focus:ring-1 focus:ring-[var(--color-brand-blue)] transition-all mb-2">
+                </div>
+                <button
+                     type="submit"
+                    class="flex items-center justify-center gap-2 px-10 py-3 w-[150px] h-[40px] bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium
+                        rounded-[28px] transition-colors">
+                                       Save
+                </button>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

@@ -4,77 +4,87 @@ permalink: /server-power-operations/
 {% extends "../../_includes/index.njk" %}
 {% block content %}
     <div class="mx-auto">
-        <h1 class="text-[32px] font-medium text-[#1D1D1F] leading-[130%] tracking-normal mb-6">Server power operations</h1>
+        <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-6">Server power operations</h1>
+
         <section class="mb-14">
-            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-5">Current status</h2>
+            <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-5">Current status</h2>
             <div class="flex flex-col gap-4">
                 <div>
-                    <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">Server status</p>
-                    <p class="text-sm font-normal leading-[1.5] text-[#151515]">Not available</p>
+                    <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Server status</p>
+                    <p class="text-sm font-normal leading-[1.5] text-custom-text">Not available</p>
                 </div>
                 <div>
-                    <p class="text-sm font-medium leading-[1.5] text-[#151515] mb-1">Last operation</p>
-                    <p class="text-sm font-normal leading-[1.5] text-[#151515]">--</p>
+                    <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Last operation</p>
+                    <p class="text-sm font-normal leading-[1.5] text-custom-text">--</p>
                 </div>
             </div>
         </section>
+
         <section>
-            <h2 class="text-xl font-medium text-[#1D1D1F] leading-[130%] mb-6">Operations</h2>
+            <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-6">Operations</h2>
+
             <div class="flex flex-col gap-5 mb-8">
-                <span class="text-sm leading-[125%] font-normal text-[#4D4D4D] mb-2">Reboot server</span>
+                <span class="text-sm leading-[125%] font-normal text-custom-aside-text mb-2">Reboot server</span>
+
                 <label class="flex items-start gap-4 cursor-pointer group">
                     <div class="relative flex items-center justify-center">
                         <input type="radio" name="reboot-server" class="peer sr-only" checked="checked"/>
-                        <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
-                        <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        <div class="w-5 h-5 border border-custom-border rounded-full peer-checked:border-brand-blue transition-all"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-brand-blue rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                     </div>
-                    <span class="text-base font-normal text-[#151515] leading-none">
+                    <span class="text-base font-normal text-custom-text leading-none">
                         Orderly – operating system shuts down, then server reboots
                     </span>
                 </label>
+
                 <label class="flex items-start gap-4 cursor-pointer group">
                     <div class="relative flex items-center justify-center">
                         <input type="radio" name="reboot-server" class="peer sr-only"/>
-                        <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
-                        <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        <div class="w-5 h-5 border border-custom-border rounded-full peer-checked:border-brand-blue transition-all"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-brand-blue rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                     </div>
-                    <span class="text-base font-normal text-[#151515] leading-[120%] max-w-[670px]">
+                    <span class="text-base font-normal text-custom-text leading-[120%] max-w-[670px]">
                         Immediate – Server reboots without operating system shutting down; may cause data corruption
                     </span>
                 </label>
             </div>
+
             <button
                 type="button"
-                class="px-16 py-3 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-[120%] font-medium rounded-[28px]
+                class="px-16 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px]
                     transition-colors mb-14">
                 Reboot
             </button>
+
             <div class="flex flex-col gap-5 mb-8">
-                <span class="text-sm leading-[125%] font-normal text-[#4D4D4D] mb-2">Shutdown server</span>
+                <span class="text-sm leading-[125%] font-normal text-custom-aside-text mb-2">Shutdown server</span>
+
                 <label class="flex items-start gap-4 cursor-pointer group">
                     <div class="relative flex items-center justify-center">
                         <input type="radio" name="shutdown-server" class="peer sr-only" checked="checked"/>
-                        <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
-                        <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        <div class="w-5 h-5 border border-custom-border rounded-full peer-checked:border-brand-blue transition-all"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-brand-blue rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                     </div>
-                    <span class="text-base font-normal text-[#151515] leading-none">
+                    <span class="text-base font-normal text-custom-text leading-none">
                         Orderly – operating system shuts down, then server shuts down
                     </span>
                 </label>
+
                 <label class="flex items-start gap-4 cursor-pointer group">
                     <div class="relative flex items-center justify-center">
                         <input type="radio" name="shutdown-server" class="peer sr-only"/>
-                        <div class="w-5 h-5 border border-[#D0D5DD] rounded-full peer-checked:border-[#688CBA] transition-all"></div>
-                        <div class="absolute w-2.5 h-2.5 bg-[#688CBA] rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                        <div class="w-5 h-5 border border-custom-border rounded-full peer-checked:border-brand-blue transition-all"></div>
+                        <div class="absolute w-2.5 h-2.5 bg-brand-blue rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
                     </div>
-                    <span class="text-base font-normal text-[#151515] leading-[120%] max-w-[670px]">
+                    <span class="text-base font-normal text-custom-text leading-[120%] max-w-[670px]">
                         Immediate – Server shuts down without operating system shutting down; may cause data corruption
                     </span>
                 </label>
             </div>
+
             <button
                 type="button"
-                class="px-[53.5px] py-3 bg-[#688CBA] hover:bg-[#5a7aa3] text-white text-sm leading-[120%] font-medium rounded-[28px]
+                class="px-[53.5px] py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px]
                     transition-colors">
                 Shut down
             </button>

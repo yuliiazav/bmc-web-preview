@@ -1,0 +1,36 @@
+---
+permalink: /sol-console/
+---
+{% extends "../../_includes/index.njk" %}
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-2">Serial over LAN (SOL) console</h1>
+
+        <p class="text-base font-normal text-custom-aside-text leading-none mb-9">
+            SOL console redirects the server’s serial port output to this window.
+        </p>
+
+        <div class="bg-custom-aside-bg rounded-[16px] px-6 py-4 flex justify-between items-center shadow-[0_2px_6px_0_rgba(41,41,41,0.08)] mb-4 border border-custom-divider">
+            <div class="flex items-center gap-3">
+                <span class="w-2 h-2 bg-[#23C45F] rounded-full shadow-[0_0_5px_0_rgba(35,196,95,0.7)]"></span>
+                <span class="text-sm font-medium text-custom-text leading-none">Connected</span>
+            </div>
+
+            <div class="flex gap-3">
+                <button
+                    type="button"
+                    class="flex items-center gap-1 px-5 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-normal leading-none rounded-full transition-colors">
+                    <span class="flex items-center justify-center w-4 h-4 shrink-0">
+                        {% include "src/assets/icons/icon-open-in-new.svg" %}
+                    </span>
+                    Open in new tab
+                </button>
+
+            </div>
+        </div>
+
+        <div class="relative w-full aspect-[5/2] bg-black rounded-lg overflow-hidden flex items-center justify-center border border-custom-border">
+            <div class="text-[#63748A] text-sm leading-none font-normal italic">Terminal interface loading...</div>
+        </div>
+    </div>
+{% endblock %}

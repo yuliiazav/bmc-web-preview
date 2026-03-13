@@ -1,0 +1,83 @@
+---
+permalink: /sessions/
+---
+{% extends "../../_includes/index.njk" %}
+{% from "macros/search.njk" import search_input %}
+
+{% block content %}
+    <div class="mx-auto">
+        <div class="flex justify-between items-center mb-12">
+            <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal">Sessions</h1>
+        </div>
+
+        <div class="flex justify-start mb-6">
+            {# Search #}
+            {{ search_input(id="sessionsSearch", placeholder="Search sessions") }}
+        </div>
+
+        <div class="bg-white border border-custom-divider rounded-sm overflow-hidden shadow-sm">
+            <table class="w-full text-left border-collapse table-fixed">
+                <thead class="bg-custom-light-bg border-b border-custom-divider sticky top-0 z-10">
+                    <tr>
+                        <th class="px-6 py-4 w-[24px]">
+                            <input type="checkbox" class="w-4 h-4 rounded border-custom-divider accent-brand-blue"/>
+                        </th>
+                        <th class="px-4 py-4 text-sm font-medium text-custom-text leading-none">Session ID</th>
+                        <th class="px-4 py-4 text-sm font-medium text-custom-text leading-none">User</th>
+                        <th class="px-4 py-4 text-sm font-medium text-custom-text leading-none">IP Address</th>
+                        <th class="px-4 py-4 text-sm font-medium text-custom-text leading-none text-right"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-custom-divider">
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <input type="checkbox" class="w-4 h-4 rounded border-custom-divider"/>
+                        </td>
+                        <td class="px-4 py-4 text-sm font-normal text-custom-text break-words">
+                            w1yNsQwKyj
+                        </td>
+                        <td class="px-4 py-4 text-sm font-normal text-custom-text">
+                            root
+                        </td>
+                        <td class="px-4 py-4 text-sm font-normal text-custom-text">
+                            192.168.120.249
+                        </td>
+                        <td class="px-4 py-4 text-sm font-medium text-right">
+                            <button class="text-brand-blue hover:underline">Disconnect</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        {# Pagination #}
+        <div class="flex justify-center items-center gap-4 mt-8">
+            <div class="flex gap-2">
+                <span class="flex items-center justify-center w-5 h-5 text-custom-aside-text cursor-pointer hover:text-brand-blue transition-colors">
+                    {% include "src/assets/icons/icon-double-arrow-left.svg" %}
+                </span>
+                <span class="flex items-center justify-center w-5 h-5 text-custom-aside-text cursor-pointer hover:text-brand-blue transition-colors">
+                    {% include "src/assets/icons/icon-arrow-left.svg" %}
+                </span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <input
+                    type="text"
+                    value="3"
+                    class="w-[46px] h-[36px] border border-custom-divider rounded-[6px] text-center text-sm font-normal text-custom-text
+                        focus:outline-none focus:border-brand-blue transition-colors"/>
+                <span class="text-sm font-normal text-custom-aside-text">of 20</span>
+            </div>
+
+            <div class="flex gap-2">
+                <span class="flex items-center justify-center w-5 h-5 text-custom-aside-text cursor-pointer hover:text-brand-blue transition-colors">
+                    {% include "src/assets/icons/icon-arrow-right.svg" %}
+                </span>
+                <span class="flex items-center justify-center w-5 h-5 text-custom-aside-text cursor-pointer hover:text-brand-blue transition-colors">
+                    {% include "src/assets/icons/icon-double-arrow-right.svg" %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

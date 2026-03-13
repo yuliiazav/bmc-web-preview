@@ -301,13 +301,20 @@ permalink: /event-logs/
 
         {# Pagination #}
         <div class="flex justify-center items-center gap-2 mt-7">
-            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-black">keyboard_double_arrow_left</span>
-            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-black">keyboard_arrow_left</span>
-            <input type="text" value="3"
-                class="w-12 h-9 border border-custom-divider rounded-md text-center text-sm font-normal text-custom-text focus:outline-none focus:border-brand-blue transition-colors"/>
-            <span class="text-sm font-normal text-custom-text">of 27</span>
-            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-black">keyboard_arrow_right</span>
-            <span class="material-symbols-outlined text-custom-aside-text cursor-pointer hover:text-black">keyboard_double_arrow_right</span>
+            <span class="flex items-center justify-center w-4 h-4 shrink-0 text-custom-aside-text cursor-pointer hover:text-custom-text">
+                {% include "src/assets/icons/icon-double-arrow-left.svg" %}</span>
+            <span class="flex items-center justify-center w-4 h-4 shrink-0 text-custom-aside-text cursor-pointer hover:text-custom-text">
+                {% include "src/assets/icons/icon-arrow-left.svg" %}</span>
+            <input
+                type="text"
+                value="3"
+                class="w-[46px] h-[37px] border border-custom-divider rounded-[6px] text-center text-sm font-normal text-custom-text
+                    focus:outline-none focus:border-brand-blue transition-colors"/>
+            <span class="text-sm font-normal text-custom-text leading-[21px] tracking-normal">of 27</span>
+            <span class="flex items-center justify-center w-4 h-4 shrink-0 text-custom-aside-text cursor-pointer hover:text-custom-text">
+                {% include "src/assets/icons/icon-arrow-right.svg" %}</span>
+            <span class="flex items-center justify-center w-4 h-4 shrink-0 text-custom-aside-text cursor-pointer hover:text-custom-text">
+                {% include "src/assets/icons/icon-double-arrow-right.svg" %}</span>
         </div>
     </div>
 {% endblock %}
