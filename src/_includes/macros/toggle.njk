@@ -1,16 +1,21 @@
 {% macro toggle_switch(id = '', label_text = 'Off', checked = false) %}
     <div class="flex items-center gap-2">
-        <label class="relative inline-flex items-center cursor-pointer">
+        <label class="relative inline-flex items-center cursor-pointer group">
             <input type="checkbox" {% if id %}id="{{ id }}"{% endif %} class="sr-only peer" {% if checked %}checked{% endif %}/>
-            <div class="w-[40px] h-[24px] bg-white border border-custom-border rounded-full peer peer-focus:outline-none
-                    peer-checked:bg-brand-blue peer-checked:border-brand-blue transition-all 
-                    after:content-[''] after:absolute after:top-[5px] after:left-[4px] after:w-[14px] after:h-[14px] 
-                    after:bg-[#707070] after:rounded-full after:transition-all 
-                    peer-checked:after:bg-white peer-checked:after:translate-x-[18px] 
-                    before:content-['check'] before:font-['Material_Symbols_Outlined'] before:absolute 
-                    before:left-[6px] before:top-[6px] before:text-white before:text-[12px] 
-                    before:leading-none before:opacity-0 peer-checked:before:opacity-100 before:transition-opacity"></div>
+
+            <div class="w-[40px] h-[24px] bg-white border border-custom-border rounded-full 
+                        peer-focus:outline-none transition-all duration-300
+                        peer-checked:bg-brand-blue peer-checked:border-brand-blue"></div>
+
+            <div class="absolute left-[7px] top-[7px] opacity-0 peer-checked:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <svg class="w-[10px] h-[10px] text-white" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 5L4.5 8.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="absolute top-[5px] left-[4px] w-[14px] h-[14px] bg-[#707070] rounded-full 
+                        transition-all duration-300 peer-checked:bg-white peer-checked:translate-x-[18px]"></div>
         </label>
-        <span class="text-sm font-normal text-custom-text leading-[21px] tracking-normal">{{ label_text }}</span>
+        <span class="text-sm font-normal text-custom-text leading-[21px]">{{ label_text }}</span>
     </div>
 {% endmacro %}

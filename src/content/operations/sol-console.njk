@@ -16,21 +16,65 @@ permalink: /sol-console/
                 <span class="text-sm font-medium text-custom-text leading-none">Connected</span>
             </div>
 
+            <div class="flex items-center gap-3 border-l border-r border-custom-divider pl-6 pr-8">
+                <span class="text-sm font-semibold text-custom-aside-text">Current SOL Baudrate:</span>
+                <div class="flex gap-6 p-1">
+                    <button 
+                        data-id="btn-SOLbaudrate-115200" 
+                        class="baud-rate-btn px-1 py-2 w-[80px] text-md font-bold bg-[#23C45F] text-white shadow-sm transition-all rounded-md">
+                        115200
+                    </button>
+                    <button 
+                        data-id="btn-SOLbaudrate-9600" 
+                        class="baud-rate-btn px-1 py-2 w-[80px] text-md font-bold text-custom-border bg-[#9f9f9fbd] shadow-sm hover:text-white transition-all rounded-md">
+                        9600
+                    </button>
+                </div>
+            </div>
+
             <div class="flex gap-3">
                 <button
                     type="button"
-                    class="flex items-center gap-1 px-5 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-normal leading-none rounded-full transition-colors">
+                    class="flex items-center gap-1 px-5 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-normal leading-none rounded-full transition-all active:scale-95">
                     <span class="flex items-center justify-center w-4 h-4 shrink-0">
                         {% include "src/assets/icons/icon-open-in-new.svg" %}
                     </span>
                     Open in new tab
                 </button>
-
             </div>
         </div>
 
-        <div class="relative w-full aspect-[5/2] bg-black rounded-lg overflow-hidden flex items-center justify-center border border-custom-border">
-            <div class="text-[#63748A] text-sm leading-none font-normal italic">Terminal interface loading...</div>
+        <div class="relative w-full aspect-[5/2] bg-black rounded-lg overflow-hidden flex items-center justify-center border border-custom-border font-mono">
+            <div class="text-[#23C45F] text-sm leading-none font-normal italic animate-pulse">Terminal interface loading...</div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.baud-rate-btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // All buttons to default state
+                    buttons.forEach(btn => {
+                        btn
+                            .classList
+                            .remove('bg-[#23C45F]', 'text-white');
+                        btn
+                            .classList
+                            .add('bg-[#9f9f9fbd]', 'text-custom-border');
+                    });
+
+                    // Activate the clicked button
+                    button
+                        .classList
+                        .remove('bg-[#9f9f9fbd]', 'text-custom-border');
+                    button
+                        .classList
+                        .add('bg-[#23C45F]', 'text-white');
+
+                });
+            });
+        });
+    </script>
 {% endblock %}

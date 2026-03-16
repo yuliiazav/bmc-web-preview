@@ -1,0 +1,86 @@
+---
+permalink: /policies/
+---
+{% extends "../../_includes/index.njk" %}
+{# The toggle switch is a macro defined in src/_includes/macros/toggle.njk #}
+{% from "macros/toggle.njk" import toggle_switch %}
+
+{% block content %}
+    <div class="max-w-[1000px]">
+        <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-8">Policies</h1>
+
+        <div class="space-y-0 divide-y divide-custom-divider">
+
+            {# BMC Shell (via SSH) #}
+            <div class="py-4 flex justify-between items-start gap-10">
+                <div class="flex flex-col gap-1">
+                    <h3 class="text-sm font-medium text-custom-text">BMC shell (via SSH)</h3>
+                    <p class="text-sm font-normal text-custom-aside-text leading-relaxed">
+                        Allow access to shell sessions via SSH, through port 22 on the BMC.
+                    </p>
+                </div>
+                {{ toggle_switch("policy-ssh", "Enabled", true) }}
+            </div>
+
+            {# Network IPMI #}
+            <div class="py-4 flex justify-between items-start gap-10">
+                <div class="flex flex-col gap-1">
+                    <h3 class="text-sm font-medium text-custom-text">Network IPMI (out-of-band IPMI)</h3>
+                    <p class="text-sm font-normal text-custom-aside-text leading-relaxed">
+                        Allow remote management of the platform via IPMI. Tools such as ipmitool require this setting to be enabled.
+                    </p>
+                </div>
+                {{ toggle_switch("policy-ipmi", "Enabled", true) }}
+            </div>
+
+            {# VirtualTPM #}
+            <div class="py-4 flex justify-between items-start gap-10">
+                <div class="flex flex-col gap-1">
+                    <h3 class="text-sm font-medium text-custom-text">VirtualTPM</h3>
+                    <p class="text-sm font-normal text-custom-aside-text leading-relaxed">
+                        Enabling vTPM makes a TPM available to the guest operating system.
+                    </p>
+                </div>
+                {{ toggle_switch("policy-vtpm", "Disabled", false) }}
+            </div>
+
+            {# RTAD #}
+            <div class="py-4 flex justify-between items-start gap-10">
+                <div class="flex flex-col gap-1">
+                    <h3 class="text-sm font-medium text-custom-text">RTAD</h3>
+                    <p class="text-sm font-normal text-custom-aside-text leading-relaxed">
+                        This option enables or disables the Remote Trusted Attestation Daemon for host firmware.
+                    </p>
+                </div>
+                {{ toggle_switch("policy-rtad", "Disabled", false) }}
+            </div>
+
+            {# Web Session Timeout #}
+            <div class="py-4 flex justify-between items-center gap-10">
+                <div class="flex flex-col gap-1">
+                    <h3 class="text-sm font-medium text-custom-text">WEB Session Timeout</h3>
+                    <p class="text-sm font-normal text-custom-aside-text leading-relaxed">
+                        Change the Web session timeout in given options.
+                    </p>
+                </div>
+
+                <div class="relative min-w-[140px]">
+                    <select class="w-full appearance-none bg-custom-light-bg border border-custom-divider text-custom-text text-sm rounded-full px-5 py-2.5 pr-10 focus:outline-none cursor-pointer">
+                        <option selected>15 Minutes</option>
+                        <option >1 Hour</option>
+                        <option>2 Hours</option>
+                        <option>4 Hours</option>
+                        <option>8 Hours</option>
+                        <option>1 Day</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-custom-aside-text">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

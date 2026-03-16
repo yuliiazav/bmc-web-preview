@@ -35,13 +35,13 @@
         <div class="relative">
             <input type="checkbox" id="user-menu-toggle" class="peer hidden"/>
             <label for="user-menu-toggle" 
-                   class="flex items-center px-2 py-2 gap-2 border border-custom-border rounded-full font-normal text-sm cursor-pointer hover:bg-custom-light-bg transition-colors select-none">
+                   class="flex items-center px-3 py-2 gap-2 border border-custom-border rounded-full font-normal text-sm cursor-pointer hover:bg-custom-light-bg transition-colors select-none">
                 <span class="flex items-center justify-center">
                     {% include "src/assets/icons/icon-avatar.svg" %}
                 </span>
                 <span>Username</span>
-                <span class="material-symbols-outlined transition-transform peer-checked:rotate-180 ml-1">
-                    arrow_drop_down
+                <span class="flex items-center justify-center transition-transform peer-checked:rotate-180">
+                    {% include "src/assets/icons/icon-arrow-down.svg" %}
                 </span>
             </label>
 
