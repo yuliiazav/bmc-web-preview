@@ -49,32 +49,7 @@ permalink: /sol-console/
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('.baud-rate-btn');
-
-            buttons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // All buttons to default state
-                    buttons.forEach(btn => {
-                        btn
-                            .classList
-                            .remove('bg-[#23C45F]', 'text-white');
-                        btn
-                            .classList
-                            .add('bg-[#9f9f9fbd]', 'text-custom-border');
-                    });
-
-                    // Activate the clicked button
-                    button
-                        .classList
-                        .remove('bg-[#9f9f9fbd]', 'text-custom-border');
-                    button
-                        .classList
-                        .add('bg-[#23C45F]', 'text-white');
-
-                });
-            });
-        });
-    </script>
+{% endblock %}
+{% block scripts %}
+    <script src="/js/sol-console.js" defer></script>
 {% endblock %}

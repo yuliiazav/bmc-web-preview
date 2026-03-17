@@ -1,5 +1,5 @@
 ---
-permalink: "/overview/"
+permalink: "/"
 ---
 {% extends "../_includes/index.njk" %}
 {# The toggle switch is a macro defined in src/_includes/macros/toggle.njk #}
@@ -87,138 +87,6 @@ permalink: "/overview/"
                     </div>
                 </div>
             </div>
-
-            <script>
-                // 1. Our system state data (This is from JSON or API)
-                let systemState = [
-                    {
-                        id: 'cpu-1-group',
-                        name: 'CPU 1',
-                        status: 'ok',
-                        info: 'Intel Xeon | Temp: 40°C'
-                    }, {
-                        id: 'cpu-2-group',
-                        name: 'CPU 2',
-                        status: 'default',
-                        info: 'Intel Xeon | Idle'
-                    }, {
-                        id: 'dimm-a3',
-                        name: 'DIMM A3',
-                        status: 'warning',
-                        info: 'Bad ECC | Status: Warning'
-                    }, {
-                        id: 'temp-sensor',
-                        name: 'Sensor',
-                        status: 'pulse',
-                        info: 'Ambient: 24°C'
-                    }
-                ];
-
-                // Styes configuration based on status
-                const statusStyles = {
-                    ok: {
-                        stroke: '#10B981',
-                        fill: '#10B981',
-                        pulse: false
-                    },
-                    warning: {
-                        stroke: '#F59E0B',
-                        fill: '#F59E0B',
-                        pulse: false
-                    },
-                    error: {
-                        stroke: '#EF4444',
-                        fill: '#EF4444',
-                        pulse: true
-                    },
-                    pulse: {
-                        stroke: '#10B981',
-                        fill: '#10B981',
-                        pulse: true
-                    },
-                    default: {
-                        stroke: '#334155',
-                        fill: '#334155',
-                        pulse: false
-                    }
-                };
-
-                // 2. Update function to update PCB elements based on systemState
-                function updatePCB() {
-                    systemState.forEach(item => {
-                        const el = document.getElementById(item.id);
-                        if (!el) 
-                            return;
-                        
-                        const style = statusStyles[item.status];
-
-                        // Update stroke and fill for all shapes inside the group
-                        const shapes = el.querySelectorAll('rect, circle, path');
-                        shapes.forEach(shape => {
-                            shape.setAttribute('stroke', style.stroke);
-                            if (shape.tagName !== 'rect') 
-                                shape.setAttribute('fill', style.fill);
-                            }
-                        );
-
-                        // animation for critical status
-                        if (style.pulse) 
-                            el
-                                .classList
-                                .add('animate-pulse');
-                        else 
-                            el
-                                .classList
-                                .remove('animate-pulse');
-                        
-                        // Update tooltip info
-                        el.setAttribute('data-info', `${item.name}: ${item.info}`);
-                    });
-                }
-
-                // 3. Update event listeners for buttons (now they just change the data)
-                document
-                    .getElementById('btn-error')
-                    .addEventListener('click', () => {
-                        // find the CPU 2 item in our state and update it to error
-                        const cpu2 = systemState.find(i => i.id === 'cpu-2-group');
-                        cpu2.status = 'error';
-                        cpu2.info = 'OVERHEAT! Temp: 98°C';
-                        updatePCB();
-                    });
-
-                document
-                    .getElementById('btn-fix')
-                    .addEventListener('click', () => {
-                        systemState = systemState.map(item => ({
-                            ...item,
-                            status: 'ok'
-                        }));
-                        updatePCB();
-                    });
-
-                // Tooltip initialization
-                const tooltip = document.getElementById('pcb-tooltip');
-                document
-                    .querySelectorAll('[data-info]')
-                    .forEach(el => {
-                        el.addEventListener('mousemove', (e) => {
-                            const rect = document
-                                .getElementById('server-pcb')
-                                .getBoundingClientRect();
-                            tooltip
-                                .classList
-                                .remove('hidden');
-                            tooltip.innerHTML = el.getAttribute('data-info');
-                            tooltip.style.left = (e.clientX - rect.left + 20) + 'px';
-                            tooltip.style.top = (e.clientY - rect.top + 20) + 'px';
-                        });
-                        el.addEventListener('mouseleave', () => tooltip.classList.add('hidden'));
-                    });
-
-                //initial render
-                updatePCB();
-            </script>
         </div>
         {# / TESTING - end of  Printed Circuit Board (PCB) code#}
 
@@ -370,4 +238,7 @@ permalink: "/overview/"
             </div>
         </section>
     </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/js/overview.js" defer></script>
 {% endblock %}
