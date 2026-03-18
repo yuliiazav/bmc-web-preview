@@ -11,7 +11,7 @@ permalink: /user-management/
         </div>
         <div class="flex justify-end items-center">
             <div class="flex gap-4">
-                <button class="flex items-center gap-2 text-sm text-brand-blue hover:text-blue-700 font-medium">
+                <button class="flex items-center gap-2 text-sm text-brand-blue hover:text-custom-accent font-medium">
                     <span class="flex items-center justify-center w-4 h-4 shrink-0">
                         {% include "src/assets/icons/icon-settings.svg" %}
                     </span>
@@ -26,11 +26,14 @@ permalink: /user-management/
                         </button>
             </div>
         </div>
-        <div class="bg-white border border-custom-divider rounded-xl overflow-hidden shadow-sm">
-            <table class="w-full text-left border-collapse">
-                <thead class="bg-custom-light-bg border-b border-slate-200">
+        <div class="bg-white border border-custom-divider overflow-hidden shadow-sm">
+            <table class="w-full text-left border-collapse text-sm">
+                <thead class="bg-custom-light-bg border-b border-custom-divider">
                     <tr>
-                        <th class="p-4"><input type="checkbox" class="rounded border-slate-300"></th>
+                        <th class="p-4 w-[50px]"><input type="checkbox" 
+               style="accent-color: var(--color-custom-accent);"
+               class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors
+                      focus:ring-[var(--color-custom-accent)] focus:ring-offset-0"></th>
                         <th class="p-4 font-medium  text-sm text-custom-text">Username</th>
                         <th class="p-4 font-medium text-sm text-custom-text">Privilege</th>
                         <th class="p-4 font-medium text-sm text-custom-text">Status</th>
@@ -45,43 +48,95 @@ permalink: /user-management/
         </div>
 
         <div class="mt-8">
-            <button id="toggle-policy-table" class="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-all">
-                <span id="toggle-icon" class="material-symbols-outlined transition-transform duration-200">keyboard_arrow_down</span>
-            Account policy settings
-        </button>
+            <button id="toggle-policy-table" class="flex items-center gap-2 text-sm text-brand-blue hover:text-custom-accent font-medium transition-all duration-500">
+                <span id="toggle-icon" class="flex items-center justify-center w-3 h-3 shrink-0 duration-400">
+                    {% include "src/assets/icons/icon-arrow-expandMore.svg" %}
+                </span> 
+                Account policy settings
+            </button>
 
-            <div id="policy-table-container" class="hidden mt-4 overflow-hidden transition-all duration-300">
-                <div class="bg-white border border-slate-200 rounded-xl shadow-sm">
-                    <table class="w-full text-left border-collapse">
-                        <thead class="bg-[#eef2f8] border-b border-slate-200">
-                            <tr>
-                                <th class="p-4 text-slate-700 font-semibold w-1/2">Privilege</th>
-                                <th class="p-4 text-slate-700 font-semibold text-center">Administrator</th>
-                                <th class="p-4 text-slate-700 font-semibold text-center">Operator</th>
-                                <th class="p-4 text-slate-700 font-semibold text-center">ReadOnly</th>
-                                <th class="p-4 text-slate-700 font-semibold text-center">NoAccess</th>
+            <div id="policy-table-container" class="hidden mt-4 overflow-hidden transition-all duration-400">
+                <div class="bg-white border border-custom-divider shadow-sm max-w-[80%]">
+                    <table class="w-full text-left border-collapse text-sm text-custom-text">
+                        <thead class="border-b border-custom-divider">
+                            <tr class="bg-[#edf2fa]">
+                                <th class="p-4 font-medium w-1/2">Privilege</th>
+                                <th class="p-4 font-medium text-center">Administrator</th>
+                                <th class="p-4 font-medium text-center">Operator</th>
+                                <th class="p-4 font-medium text-center">ReadOnly</th>
+                                <th class="p-4 font-medium text-center">NoAccess</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            {% set privileges = ["Configure components managed by this service", "Configure manager resources", "Update password for current user account", "Configure users and their accounts", "Log in to the service and read resources"] %}
 
-                            {% for item in privileges %}
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="p-4 text-slate-600">{{ item }}</td>
-                                    <td class="p-4 text-center text-blue-500">
-                                        <span class="material-symbols-outlined">check</span>
-                                    </td>
-                                    <td class="p-4 text-center text-blue-500">
-                                        {% if loop.index != 2 and loop.index != 4 %}
-                                            <span class="material-symbols-outlined">check</span>
+                        {% set permissions = [
+                            {
+                                name: "Configure components managed by this service",
+                                admin: true,
+                                operator: true,
+                                readonly: false,
+                                noaccess: false
+                            }, {
+                                name: "Configure manager resources",
+                                admin: true,
+                                operator: false,
+                                readonly: false,
+                                noaccess: false
+                            }, {
+                                name: "Update password for current user account",
+                                admin: true,
+                                operator: true,
+                                readonly: true,
+                                noaccess: false
+                            }, {
+                                name: "Configure users and their accounts",
+                                admin: true,
+                                operator: false,
+                                readonly: false,
+                                noaccess: false
+                            }, {
+                                name: "Log in to the service and read resources",
+                                admin: true,
+                                operator: true,
+                                readonly: true,
+                                noaccess: false
+                            }
+                        ] %}
+                        <tbody class="divide-y divide-custom-divider text-custom-text">
+                            {% for priv in permissions %}
+                                <tr class="hover:bg-[#eeeff382] transition-colors">
+                                    <td class="p-4">{{ priv.name }}</td>
+
+                                    <td class="p-4 text-center text-brand-blue">
+                                        {% if priv.admin %}
+                                            <span class="flex items-center justify-center w-4 h-4 mx-auto">
+                                                {% include "src/assets/icons/icon-checkmark.svg" %}
+                                            </span>
                                         {% endif %}
                                     </td>
-                                    <td class="p-4 text-center text-blue-500">
-                                        {% if loop.index == 3 or loop.index == 5 %}
-                                            <span class="material-symbols-outlined">check</span>
+
+                                    <td class="p-4 text-center text-brand-blue">
+                                        {% if priv.operator %}
+                                            <span class="flex items-center justify-center w-4 h-4 mx-auto">
+                                                {% include "src/assets/icons/icon-checkmark.svg" %}
+                                            </span>
                                         {% endif %}
                                     </td>
-                                    <td class="p-4 text-center"></td>
+
+                                    <td class="p-4 text-center text-brand-blue">
+                                        {% if priv.readonly %}
+                                            <span class="flex items-center justify-center w-4 h-4 mx-auto">
+                                                {% include "src/assets/icons/icon-checkmark.svg" %}
+                                            </span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td class="p-4 text-center text-brand-blue">
+                                        {% if priv.noaccess %}
+                                            <span class="flex items-center justify-center w-4 h-4 mx-auto">
+                                                {% include "src/assets/icons/icon-checkmark.svg" %}
+                                            </span>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

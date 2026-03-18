@@ -1,0 +1,164 @@
+---
+permalink: /ldap/
+---
+{% extends "../../_includes/index.njk" %}
+
+{% block content %}
+    <div class="mx-auto">
+        <div class="flex flex-col gap-1 mb-8">
+            <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal">LDAP</h1>
+            <p class="text-base text-stone-700">Configure LDAP settings and manage role groups.</p>
+        </div>
+
+        <div class="mb-12">
+            <h2 class="text-xl font-medium text-custom-text mb-4">Settings</h2>
+
+            <div class="flex flex-col gap-4 mb-12">
+                <div class="flex flex-col gap-2">
+                    <span class="text-sm font-medium text-custom-text">LDAP authentication</span>
+                    <label class="flex items-center gap-3 cursor-pointer group w-fit">
+                        <input type="checkbox" id="ldap-enable" name="ldapEnabled"
+                            style="accent-color: var(--color-custom-accent);"
+                            class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors focus:ring-[var(--color-custom-accent)]">
+                        <span class="text-sm text-custom-text">Enable</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div>
+                    <h3 class="font-medium text-custom-text text-sm mb-2">Secure LDAP using SSL</h3>
+                    <p class="text-xs text-stone-700 mb-3 w-[60%] leading-[170%]">
+                        A CA certificate and an LDAP certificate are required to enable secure LDAP
+                    </p>
+                    <label class="flex items-center gap-3 cursor-pointer w-fit">
+                        <input type="checkbox" id="ssl-enable" name="sslEnabled"
+                            style="accent-color: var(--color-custom-accent);"
+                            class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors focus:ring-[var(--color-custom-accent)]">
+                        <span class="text-sm text-custom-text">Enable</span>
+                    </label>
+                </div>
+
+                <div>
+                    <h3 class="font-medium text-stone-700 mb-2">Service type</h3>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <div class="relative flex items-center justify-center">
+                                <input type="radio" id="service-openldap" name="service-type" value="openldap" class="peer sr-only" checked/>
+                                <div class="w-5 h-5 border border-custom-border rounded-full peer-checked:border-brand-blue transition-all"></div>
+                                <div class="absolute w-2.5 h-2.5 bg-brand-blue rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                            </div>
+                            <span class="text-base text-custom-text">OpenLDAP</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <div class="relative flex items-center justify-center">
+                                <input type="radio" id="service-ad" name="service-type" value="active-directory" class="peer sr-only"/>
+                                <div class="w-5 h-5 border border-custom-border rounded-full peer-checked:border-brand-blue transition-all"></div>
+                                <div class="absolute w-2.5 h-2.5 bg-brand-blue rounded-full opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+                            </div>
+                            <span class="text-base text-custom-text">Active Directory</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border border-custom-divider p-6 shadow-sm rounded-sm">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm font-medium text-custom-text">CA Certificate valid until</p>
+                            <p id="ca-cert-date" class="text-sm text-stone-700">--</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-custom-text">LDAP Certificate valid until</p>
+                            <p id="ldap-cert-date" class="text-sm text-stone-700">--</p>
+                        </div>
+                        <a href="/certificates/" class="text-sm text-brand-blue hover:underline font-medium inline-block mt-2">
+                            Manage SSL certificates
+                        </a>
+                    </div>
+
+                    <div class="col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="flex flex-col gap-1">
+                            <label for="server-uri" class="text-xs text-stone-700">Server URI</label>
+                            <input type="text" id="server-uri" name="serverUri" placeholder="ldap://" 
+                                class="w-full p-2 bg-custom-light-bg border border-custom-divider text-stone-700 focus:ring-1 focus:ring-brand-blue outline-none rounded-md text-sm">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label for="bind-dn" class="text-xs text-stone-700">Bind DN</label>
+                            <input type="text" id="bind-dn" name="bindDn"
+                                class="w-full p-2 bg-custom-light-bg border border-custom-divider text-stone-700 focus:ring-1 focus:ring-brand-blue outline-none rounded-md text-sm">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label for="bind-password" class="text-xs text-stone-700">Bind password</label>
+                            <div class="relative w-full">
+                                <input type="password" id="bind-password" name="bindPassword"
+                                    class="w-full p-2 pr-10 bg-custom-light-bg border border-custom-divider text-stone-700 focus:ring-1 focus:ring-brand-blue outline-none rounded-md text-sm">
+                                <button type="button" id="toggle-password" class="absolute inset-y-0 right-3 flex items-center justify-center w-4 h-4 my-auto hover:opacity-70 transition-opacity">
+                                    {% include "src/assets/icons/icon-visibility-eye.svg" %}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label for="base-dn" class="text-xs text-stone-700">Base DN</label>
+                            <input type="text" id="base-dn" name="baseDn"
+                                class="w-full p-2 bg-custom-light-bg border border-custom-divider text-stone-700 focus:ring-1 focus:ring-brand-blue outline-none rounded-md text-sm">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label for="user-id-attr" class="text-xs text-stone-700">User ID Attribute - optional</label>
+                            <input type="text" id="user-id-attr" name="userIdAttr"
+                                class="w-full p-2 bg-custom-light-bg border border-custom-divider text-stone-700 focus:ring-1 focus:ring-brand-blue outline-none rounded-md text-sm">
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label for="group-id-attr" class="text-xs text-stone-700">Group ID Attribute - optional</label>
+                            <input type="text" id="group-id-attr" name="groupIdAttr"
+                                class="w-full p-2 bg-custom-light-bg border border-custom-divider text-stone-700 focus:ring-1 focus:ring-brand-blue outline-none rounded-md text-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="save-ldap-settings-btn" class="mt-8 px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white rounded-[28px] text-sm font-medium transition-all shadow-md active:scale-95">
+                Save settings
+            </button>
+        </div>
+
+        <div class="mt-12">
+            <h2 class="text-xl font-medium text-custom-text mb-4">Role groups</h2>
+            <div class="bg-blue-50 border-l-4 border-brand-blue p-4 flex items-center gap-3 mb-6">
+                <span class="flex items-center text-brand-blue justify-center w-4 h-4 shrink-0">
+                    {% include "src/assets/icons/icon-info.svg" %}
+                </span>
+                <p class="text-custom-text text-base">LDAP authentication must be enabled to modify role groups.</p>
+            </div>
+
+            <div class="flex justify-end mb-4">
+                <button id="add-role-group-btn" class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue text-white text-sm font-medium rounded-[28px] transition-all hover:bg-custom-hover-bg active:scale-95">
+                    <span class="w-4 h-4">{% include "src/assets/icons/icon-plus.svg" %}</span>
+                    Add role group
+                </button>
+            </div>
+
+            <div class="bg-white border border-custom-divider overflow-hidden shadow-sm">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead class="bg-custom-light-bg border-b border-custom-divider">
+                        <tr>
+                            <th class="p-4 w-12"><input type="checkbox" 
+               style="accent-color: var(--color-custom-accent);"
+               class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors
+                      focus:ring-[var(--color-custom-accent)] focus:ring-offset-0"></th>
+                            <th class="p-4 font-medium text-custom-text">Group name</th>
+                            <th class="p-4 font-medium text-custom-text">Group privilege</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3" class="p-10 text-center text-stone-700 italic">No items available</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

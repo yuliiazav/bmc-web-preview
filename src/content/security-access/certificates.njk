@@ -1,0 +1,45 @@
+---
+permalink: /certificates/
+---
+{% extends "../../_includes/index.njk" %}
+
+{% block content %}
+    <div class="space-y-6">
+        <div class="flex justify-between items-center">
+            <h1 class="text-[32px] font-medium text-custom-text leading-[130%]">Certificates</h1>
+
+            <div class="flex gap-4">
+                <button id="generate-csr-btn" class="flex items-center gap-2 text-sm text-brand-blue hover:text-custom-accent font-medium">
+                    <span class="w-4 h-4">{% include "src/assets/icons/icon-plus.svg" %}</span>
+                Generate CSR
+            </button>
+
+                <button id="add-cert-btn" class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue text-white text-sm font-medium rounded-[28px] hover:bg-custom-hover-bg transition-all active:scale-95">
+                    <span class="w-4 h-4">{% include "src/assets/icons/icon-plus.svg" %}</span>
+                Add new certificate
+            </button>
+            </div>
+        </div>
+
+        <div class="bg-white border border-custom-divider rounded-xl overflow-hidden shadow-sm mt-8">
+            <table class="w-full text-left border-collapse text-sm">
+                <thead class="bg-custom-light-bg border-b border-custom-divider text-custom-text">
+                    <tr>
+                        <th class="p-4 font-medium">Certificate</th>
+                        <th class="p-4 font-medium">Issued by</th>
+                        <th class="p-4 font-medium">Issued to</th>
+                        <th class="p-4 font-medium">Valid from</th>
+                        <th class="p-4 font-medium">Valid until</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-custom-divider">
+                        <td colspan="5" class="p-12 text-center text-stone-700 italic bg-white">
+                        No items available
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
