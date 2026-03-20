@@ -8,7 +8,7 @@ permalink: /manage-bmc/
 
         <div class="mb-7">
             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Last BMC reboot</p>
-            <p class="text-sm font-normal text-custom-aside-text leading-[1.5]">2025-10-17 15:00:39 UTC</p>
+            <p id="bmc-last-reboot-time" class="text-sm font-normal text-custom-aside-text leading-[1.5]">2025-10-17 15:00:39 UTC</p>
         </div>
 
         <p class="text-sm font-normal text-custom-aside-text leading-[1.5] mb-10 max-w-[620px]">
@@ -17,41 +17,56 @@ permalink: /manage-bmc/
 
         <div class="flex flex-wrap gap-4 mb-10">
             <button type="button" 
+            id="btn-reboot-bmc"
                 class="px-10 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full transition-all shadow-sm active:scale-95">
                 Reboot BMC
             </button>
 
             <button type="button" 
+            id="btn-remote-pc-off"
                 class="px-6 py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all active:scale-95">
                 Remote PC power OFF
             </button>
 
             <button type="button" 
+            id="btn-remote-pc-on"
                 class="px-6 py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all active:scale-95">
                 Remote PC power ON
             </button>
         </div>
 
-        <div class="mb-12 p-4 bg-custom-light-bg/50 rounded-xl inline-block border border-custom-divider/30">
+        <div id="pc-state-indicator" class="mb-12 p-4 bg-custom-light-bg/50 rounded-xl inline-block border border-custom-divider/30">
             <p class="text-xs font-semibold text-custom-aside-text uppercase tracking-wider mb-1">Current State Remote PC</p>
-            <p class="text-lg font-bold text-custom-text">Off</p>
+            <p id="pc-current-state-val" class="text-lg font-bold text-custom-text">Off</p>
         </div>
-
+        {#  GPIO  #}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1000px]">
             {% for i in range(0, 4) %}
-                <div class="bg-white rounded-[20px] p-6 flex flex-col items-center border border-custom-divider shadow-sm hover:shadow-md transition-shadow">
-                    <span class="text-xs font-bold text-custom-aside-text uppercase tracking-widest mb-6">GPIO Port {{ i }}</span>
+                <div id="card-gpio-{{ i }}" class="bg-white rounded-[20px] p-6 flex flex-col items-center border border-custom-divider shadow-sm hover:shadow-md transition-shadow">
+                    <span class="text-[10px] font-bold text-custom-aside-text uppercase tracking-widest mb-6">GPIO Port {{ i }}</span>
 
                     <div class="flex flex-col gap-3 w-full">
-                        <button class="w-full py-3 bg-[#23C45F] hover:bg-[#1eb054] text-white text-sm font-bold rounded-xl transition-all active:opacity-80">
+                        <button 
+                            id="btn-gpio-high-{{ i }}"
+                            data-port="{{ i }}"
+                            data-action="high"
+                            class="w-full py-3 bg-[#23C45F] hover:bg-[#1eb054] text-white text-[12px] font-bold rounded-xl transition-all active:opacity-80">
                             High {{ i }}
                         </button>
 
-                        <button class="w-full py-3 bg-[#EF4345] hover:bg-[#d93a3c] text-white text-sm font-bold rounded-xl transition-all active:opacity-80">
+                        <button 
+                            id="btn-gpio-low-{{ i }}"
+                            data-port="{{ i }}"
+                            data-action="low"
+                            class="w-full py-3 bg-[#EF4345] hover:bg-[#d93a3c] text-white text-[12px] font-bold rounded-xl transition-all active:opacity-80">
                             Low {{ i }}
                         </button>
 
-                        <button class="w-full py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-bold rounded-xl transition-all active:opacity-80">
+                        <button 
+                            id="btn-gpio-ask-{{ i }}"
+                            data-port="{{ i }}"
+                            data-action="ask"
+                            class="w-full py-3 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-[12px] font-bold rounded-xl transition-all active:opacity-80">
                             Ask {{ i }}
                         </button>
                     </div>
@@ -59,4 +74,34 @@ permalink: /manage-bmc/
             {% endfor %}
         </div>
     </div>
+
+    {# Modal window for rebootBMC btn #}
+    <div id="modal-confirm-action" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[440px] overflow-hidden transform transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+                <h3 id="modal-title" class="text-lg font-bold text-custom-text">Confirm Action</h3>
+                <button id="modal-close-x" class="text-custom-aside-text hover:text-custom-text transition-colors text-2xl leading-none">&times;</button>
+            </div>
+
+            <div class="p-8">
+                <p id="modal-description" class="text-base font-normal text-custom-text leading-relaxed">
+                Are you sure you want to proceed?
+            </p>
+            </div>
+
+            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
+                <button id="modal-btn-cancel" 
+                    class="px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all active:scale-95">
+                Cancel
+            </button>
+                <button id="modal-btn-confirm" 
+                    class="px-8 py-2.5 text-white text-sm font-medium rounded-full transition-all shadow-md active:scale-95">
+                Confirm
+            </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/js/manage-bmc.js" defer></script>
 {% endblock %}

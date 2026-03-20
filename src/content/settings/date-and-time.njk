@@ -11,8 +11,7 @@ permalink: /date-and-time/
                 {% include "src/assets/icons/icon-info.svg" %}
             </span>
             <span class="text-base font-normal text-custom-text leading-[21px]">
-                To change how date and time are displayed (either UTC or browser offset) throughout the application, visit <span class="underline text-brand-blue cursor-pointer">Profile Settings</span>
-
+                To change how date and time are displayed (either UTC or browser offset) throughout the application, visit <a href="/profile-settings/" class="underline text-brand-blue cursor-pointer">Profile Settings</a>
             </span>
         </div>
 
@@ -45,23 +44,21 @@ permalink: /date-and-time/
                         <span class="text-sm font-medium leading-[1.5] text-custom-text">Date</span>
                         <span class="text-xs font-normal leading-[1.5] text-custom-aside-text">YYYY-MM-DD</span>
                         <div class="relative">
-                            <span class="absolute left-5 top-1/2 -translate-y-1/2 material-symbols-outlined text-[14px] text-custom-aside-text">
-                                calendar_today</span>
                             <input
-                                type="text"
+                                type="date"
                                 placeholder="2025-10-20"
-                                class="w-full pl-[42px] pr-5 py-3 bg-custom-light-bg border border-custom-divider rounded-md text-sm font-normal leading-none
-                                    text-custom-text focus:ring-1 focus:ring-brand-blue outline-none placeholder-custom-aside-text"/>
+                                class="w-full px-2 py-3 bg-custom-light-bg border border-custom-divider rounded-md text-sm font-normal leading-none
+                                 focus:ring-1 focus:ring-brand-blue outline-none placeholder-custom-aside-text text-custom-aside-text"/>
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
                         <span class="text-sm font-medium leading-[1.5] text-custom-text">24-hour time (UTC)</span>
                         <span class="text-xs font-normal leading-[1.5] text-custom-aside-text">HH:MM</span>
                         <input
-                            type="text"
+                            type="time"
                             placeholder="17:05"
-                            class="w-full px-5 py-3 bg-custom-light-bg border border-custom-divider rounded-md text-sm font-normal leading-none text-custom-text
-                                focus:ring-1 focus:ring-brand-blue outline-none placeholder-custom-aside-text"/>
+                            class="w-full px-2 py-3 bg-custom-light-bg border border-custom-divider rounded-md text-sm font-normal leading-none
+                                focus:ring-1 focus:ring-brand-blue outline-none placeholder-custom-aside-text text-custom-aside-text"/>
                     </div>
                 </div>
             </div>
@@ -80,7 +77,7 @@ permalink: /date-and-time/
                     {% for i in range(1, 4) %}
                         <div class="flex flex-col gap-2">
                             <span class="text-xs font-normal leading-[1.5] text-custom-text">Server {{ i }}</span>
-                            <input
+                            <input id="npt-server-{{ i }}"
                                 type="text"
                                 class="w-full px-5 py-3 bg-custom-aside-bg border border-custom-divider rounded-md text-sm font-normal leading-none text-custom-text
                                     focus:ring-1 focus:ring-brand-blue outline-none"/>
@@ -89,7 +86,7 @@ permalink: /date-and-time/
                 </div>
             </div>
 
-            <button
+            <button id="btn-save-date-time-settings"
                 type="button"
                 class="px-11 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px]
                     transition-all active:scale-95">

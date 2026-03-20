@@ -18,11 +18,11 @@ permalink: /network/
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center gap-2">
                         <span class="text-sm font-medium leading-[1.5] text-custom-text">Hostname</span>
-                        <span class="flex items-center text-brand-blue justify-center w-4 h-4 shrink-0">
+                        <span id="btn-edit-hostname" class="flex items-center text-brand-blue justify-center w-4 h-4 shrink-0 cursor-pointer">
                             {% include "src/assets/icons/icon-edit.svg" %}
                         </span>
                     </div>
-                    <span class="text-sm font-normal leading-[1.5] text-custom-text">ast2600-default</span>
+                    <span id="val-hostname" class="text-sm font-normal leading-[1.5] text-custom-text">ast2600-default</span>
                 </div>
 
                 {% set switches = [
@@ -56,14 +56,14 @@ permalink: /network/
         <div class="border border-custom-divider overflow-hidden mb-12 rounded-lg">
             <div class="bg-custom-light-bg">
                 <div class="flex p-2">
-                    <button class="w-[93px] py-3 text-sm leading-[1.5] font-medium text-custom-text border-b-[3px] border-brand-blue">
+                    <button data-interface="bond0" class="text-sm leading-[1.5] font-medium text-custom-text border-b-[3px] border-brand-blue bg-custom-aside-bg w-[93px] py-3 hover:bg-white/50 transition-colors">
                         bond0
                     </button>
-                    <button class="w-[93px] py-3 text-sm font-normal text-custom-aside-text hover:bg-white/50 border-b border-custom-divider transition-colors">
+                    <button data-interface="eth0" class="w-[93px] py-3 text-sm font-normal text-custom-aside-text hover:bg-white/50 border-b border-custom-divider transition-colors">
                         eth0
                     </button>
-                    <button class="w-[93px] py-3 text-sm font-normal text-custom-aside-text hover:bg-white/50 border-b border-custom-divider transition-colors">
-                        eth
+                    <button data-interface="eth1" class="w-[93px] py-3 text-sm font-normal text-custom-aside-text hover:bg-white/50 border-b border-custom-divider transition-colors">
+                        eth1
                     </button>
                 </div>
             </div>
@@ -72,11 +72,11 @@ permalink: /network/
                 <div class="grid grid-cols-2 gap-[152px] mb-[72px] max-w-[400px]">
                     <div>
                         <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Link status</p>
-                        <p class="text-sm font-normal leading-[1.5] text-custom-text">NoLink</p>
+                        <p id="val-link-status" class="text-sm font-normal leading-[1.5] text-custom-text">NoLink</p>
                     </div>
                     <div>
                         <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">Speed (mbps)</p>
-                        <p class="text-sm font-normal leading-[1.5] text-custom-text">65535</p>
+                        <p id="val-speed" class="text-sm font-normal leading-[1.5] text-custom-text">65535</p>
                     </div>
                 </div>
 
@@ -85,16 +85,16 @@ permalink: /network/
                     <div class="grid grid-cols-2 gap-[152px] max-w-[400px]">
                         <div>
                             <p class="text-sm font-medium leading-[1.5] text-custom-text mb-1">FQDN</p>
-                            <p class="text-sm font-normal leading-[1.5] text-custom-text">ast2600-default</p>
+                            <p id="val-fqdn" class="text-sm font-normal leading-[1.5] text-custom-text">ast2600-default</p>
                         </div>
                         <div>
                             <div class="flex items-center gap-2 mb-1">
                                 <span class="text-sm font-medium leading-[1.5] text-custom-text">MAC address</span>
-                                <span class="flex items-center text-brand-blue justify-center w-4 h-4 shrink-0">
+                                <span id="btn-edit-mac" class="flex items-center text-brand-blue justify-center w-4 h-4 shrink-0 cursor-pointer">
                                     {% include "src/assets/icons/icon-edit.svg" %}
                                 </span>
                             </div>
-                            <p class="text-sm font-normal leading-[1.5] text-custom-text">72:47:7e:cc:7f:d6</p>
+                            <p id="val-mac" class="text-sm font-normal leading-[1.5] text-custom-text">72:47:7e:cc:7f:d6</p>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ permalink: /network/
                         {{ toggle_switch(
                             id = "switch-dhcp", 
                             label_text = "Enabled", 
-                            checked = false 
+                            checked = true
                         ) }}
                     </div>
                 </div>
@@ -116,8 +116,8 @@ permalink: /network/
                 <div class="mb-14">
                     <div class="flex justify-between items-center mb-2">
                         <h4 class="text-sm font-medium leading-[1.5] text-custom-text">IPv4 addresses</h4>
-                        <button class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px] transition-all active:scale-95">
-                            <span class="flex items-center text-white justify-center w-4 h-4 shrink-0">
+                        <button id="btn-add-ipv4-address-ip" class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px] transition-all active:scale-95">
+                            <span class="flex items-center text-white justify-center w-4 h-4 shrink-0 ">
                                 {% include "src/assets/icons/icon-plus.svg" %}
                             </span>
                             Add static IPv4 address
@@ -148,7 +148,7 @@ permalink: /network/
                 <div class="max-w-[600px]">
                     <div class="flex justify-between items-center mb-4">
                         <h4 class="text-xl font-medium text-custom-text leading-[130%]">Static DNS</h4>
-                        <button class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px] transition-all active:scale-95">
+                        <button id="btn-add-dns-ip-address" class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px] transition-all active:scale-95">
                             <span class="flex items-center text-white justify-center w-4 h-4 shrink-0">
                                 {% include "src/assets/icons/icon-plus.svg" %}
                             </span>
@@ -164,4 +164,102 @@ permalink: /network/
             </div>
         </div>
     </div>
+    {# formattin, adding ip addressesmodals, updates msg #}
+    {#modal for editing hostname #}
+    <div id="modal-edit-field" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[440px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+                <h3 id="edit-modal-title" class="text-lg font-bold text-custom-text">Edit hostname</h3>
+                <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-8">
+                <label id="edit-modal-label" class="block text-xs font-medium text-custom-aside-text mb-2">Hostname</label>
+                <input type="text" id="edit-modal-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm">
+            </div>
+            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+                <button id="btn-save-field" class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all">Add</button>
+            </div>
+        </div>
+    </div>
+    {# Modal for disable DHCP #}
+    <div id="modal-disable-dhcp" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[440px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+                <h3 class="text-lg font-bold text-custom-text">Disable DHCP</h3>
+                <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-8">
+                <p class="text-sm text-custom-text">Are you sure you want to disable DHCP?</p>
+            </div>
+            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+                <button id="btn-confirm-disable-dhcp" class="px-8 py-2.5 bg-[#D62F2F] hover:bg-red-700 text-white text-sm font-medium rounded-full shadow-md transition-all">Disable</button>
+            </div>
+        </div>
+    </div>
+    {# Modal for adding static IPv4 address #}
+    <div id="modal-dns-address-ip" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[540px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+                <h3 class="text-lg font-bold text-custom-text">Add IP address</h3>
+                <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-8 grid grid-cols-2 gap-6">
+                <div class="col-span-1">
+                    <label class="block text-xs font-medium text-custom-aside-text mb-2">Static DNS</label>
+                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                </div>
+            </div>
+            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+                <button class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all">Add</button>
+            </div>
+        </div>
+    </div>
+    {# Modal for adding static IPv4 address #}
+    <div id="modal-ipv4-address-ip" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[540px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+                <h3 class="text-lg font-bold text-custom-text">Add static IPv4 address</h3>
+                <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
+            </div>
+            <div class="p-8 grid grid-cols-2 gap-6">
+                <div class="col-span-1">
+                    <label class="block text-xs font-medium text-custom-aside-text mb-2">IP address</label>
+                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                </div>
+                <div class="col-span-1">
+                    <label class="block text-xs font-medium text-custom-aside-text mb-2">Gateway</label>
+                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                </div>
+                <div class="col-span-2">
+                    <label class="block text-xs font-medium text-custom-aside-text mb-2">Subnet mask</label>
+                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                </div>
+            </div>
+            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+                <button class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all">Add</button>
+            </div>
+        </div>
+    </div>
+    {#toasts #}
+    <div id="success-toast" class="fixed top-6 right-6 z-[110] hidden transform transition-all duration-300 translate-x-10 opacity-0">
+        <div class="bg-[#E9F7EF] border-l-4 border-[#23C45F] p-4 rounded-r-lg shadow-lg flex items-start gap-4 min-w-[320px]">
+            <div class="flex-shrink-0 text-[#23C45F]">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <div class="flex-grow">
+                <p class="text-sm font-bold text-custom-text">Success</p>
+                <p id="toast-message" class="text-xs text-custom-aside-text">Successfully updated settings.</p>
+            </div>
+            <button onclick="hideToast()" class="text-custom-aside-text hover:text-custom-text text-lg leading-none">&times;</button>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/js/network.js" defer></script>
 {% endblock %}

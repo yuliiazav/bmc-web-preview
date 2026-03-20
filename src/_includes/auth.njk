@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title or "Smart-AVI Login" }}</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body class="bg-brand-blue/10">
+
+        <main>
+            {% block content %}
+                {{ content | safe }}
+            {% endblock %}
+        </main>
+
+        <script>
+            // Toggle Password Visibility
+            const togglePass = document.getElementById('toggle-password');
+            if (togglePass) {
+                togglePass.addEventListener('click', function () {
+                    const passInput = document.getElementById('password');
+                    const type = passInput.getAttribute('type') === 'password'
+                        ? 'text'
+                        : 'password';
+                    passInput.setAttribute('type', type);
+                });
+            }
+        </script>
+    </body>
+</html>

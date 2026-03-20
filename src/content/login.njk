@@ -1,0 +1,97 @@
+---
+layout: auth.njk
+permalink: /login/
+title: "Login | Smart-AVI"
+---
+
+<div class="min-h-screen flex items-center justify-center px-4 bg-slate-100">
+    <div class="bg-white p-8 rounded-[32px] shadow-sm border border-custom-divider w-full max-w-[400px] flex flex-col items-center">
+
+        <div class="mb-6 w-[220px] h-[45px]">
+            {% include "src/assets/images/logo.svg" %}
+        </div>
+
+        <form id="login-form" class="w-full flex flex-col align-center justify-center gap-4">
+            <div class="relative w-full" id="lang-select-wrapper">
+                <button type="button" onclick="document.getElementById('lang-list').classList.toggle('hidden')" 
+                              class="w-full flex items-center justify-between p-2 bg-white border border-custom-divider rounded-lg text-sm text-stone-500 outline-none focus:ring-1 focus:ring-brand-blue">
+                    <span id="current-lang">English</span>
+                    <span class="flex items-center text-stone-500 justify-center w-4 h-4 shrink-0">
+                        {% include "src/assets/icons/icon-arrow-down-thin.svg" %}
+                    </span>
+                </button>
+
+                <div id="lang-list" class="hidden absolute z-10 w-full mt-1 bg-white border border-custom-divider rounded-xl shadow-lg">
+                    <div class="py-1">
+                        <button type="button" onclick="selectLang('English', 'en')" class="w-full text-left px-4 py-2 text-sm text-custom-text hover:bg-gray-50">English</button>
+                        <button type="button" onclick="selectLang('Spanish', 'es')" class="w-full text-left px-4 py-2 text-sm text-custom-text hover:bg-gray-50">Spanish</button>
+                    </div>
+                </div>
+
+                <input type="hidden" name="language" id="language-input" value="en">
+            </div>
+
+            <script>
+                function selectLang(name, value) {
+                    document
+                        .getElementById('current-lang')
+                        .innerText = name;
+                    document
+                        .getElementById('language-input')
+                        .value = value;
+                    document
+                        .getElementById('lang-list')
+                        .classList
+                        .add('hidden');
+                    // Turn the button text color to active color
+                    document
+                        .getElementById('lang-select-wrapper')
+                        .querySelector('button')
+                        .classList
+                        .replace('text-stone-500', 'text-custom-text');
+                }
+
+                // Close the dropdown when clicking outside
+                window.onclick = function (event) {
+                    if (!event.target.closest('#lang-select-wrapper')) {
+                        document
+                            .getElementById('lang-list')
+                            .classList
+                            .add('hidden');
+                    }
+                }
+            </script>
+
+            <div class="flex flex-col">
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" required
+                    class="w-full p-2 bg-white border border-custom-divider rounded-lg text-sm outline-none focus:ring-1 focus:ring-brand-blue 
+                           placeholder:text-stone-500 text-custom-text transition-colors">
+            </div>
+
+            <div class="relative w-full flex items-center">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required
+        class="w-full p-2 pr-10 bg-white border border-custom-divider rounded-lg text-sm outline-none focus:ring-1 focus:ring-brand-blue 
+               placeholder:text-stone-500 text-custom-text transition-colors">
+
+                <button type="button" id="toggle-password" 
+        class="absolute right-3 inset-y-0 flex items-center justify-center text-stone-400 hover:text-stone-600 transition-colors">
+                    <span class="w-4 h-4 flex items-center justify-center">
+                        {% include "src/assets/icons/icon-visibility-eye.svg" %}
+                    </span>
+                </button>
+            </div>
+
+            <div class="pt-3 text-center">
+                <button type="submit" id="login-submit" 
+                    class="w-[70%] px-11 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px]
+                    transition-all active:scale-95">
+                    Log In
+                </button>
+            </div>
+        </form>
+
+        <p class="mt-8 text-[10px] text-stone-500">© 2026 SmartAVI. All rights reserved.</p>
+    </div>
+</div>

@@ -10,14 +10,17 @@ permalink: /kvm/
             Remote video console for SmartAVI server access.
         </p>
 
+        {# Control Panel #}
         <div class="bg-custom-aside-bg rounded-[16px] px-6 py-4 flex justify-between items-center shadow-[0_2px_6px_0_rgba(41,41,41,0.08)] mb-4 border border-custom-divider">
-            <div class="flex items-center gap-3">
-                <span class="w-2 h-2 bg-[#23C45F] rounded-full shadow-[0_0_5px_0_rgba(35,196,95,0.7)]"></span>
-                <span class="text-sm font-medium text-custom-text leading-none">Connected</span>
+            <div id="kvm-status-container" class="flex items-center gap-3">
+                {# ID forJS #}
+                <span id="kvm-status-dot" class="w-2 h-2 bg-[#23C45F] rounded-full shadow-[0_0_5px_0_rgba(35,196,95,0.7)]"></span>
+                <span id="kvm-status-text" class="text-sm font-medium text-custom-text leading-none">Connected</span>
             </div>
 
             <div class="flex gap-3">
                 <button
+                    id="btn-kvm-new-tab"
                     type="button"
                     class="flex items-center gap-1 px-5 py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-normal leading-none rounded-full transition-all active:scale-95">
                     <span class="flex items-center justify-center w-4 h-4 shrink-0">
@@ -25,17 +28,25 @@ permalink: /kvm/
                     </span>
                     Open in new tab
                 </button>
+
                 <button
-                   type="button"
-                    class="px-5 py-3 bg-custom-light-bg   text-brand-blue text-sm font-normal leading-none rounded-full border border-transparent hover:border-brand-blue transition-all active:scale-95">
-                   Send Ctrl+Alt+Del
+                    id="btn-kvm-ctrl-alt-del"
+                    type="button"
+                    class="px-5 py-3 bg-custom-light-bg text-brand-blue text-sm font-normal leading-none rounded-full border border-transparent hover:border-brand-blue transition-all active:scale-95">
+                    Send Ctrl+Alt+Del
                 </button>
             </div>
         </div>
 
-        <div class="relative w-full aspect-[5/2] bg-black rounded-lg overflow-hidden flex items-center justify-center border border-custom-border">
-            <div class="text-[#63748A] text-sm leading-none font-normal italic">
-                Live feed preview (KVM stream)
+        {# KVM Viewport #}
+        <div id="kvm-viewport-container" class="relative w-full aspect-[16/9] bg-black rounded-lg overflow-hidden flex items-center justify-center border border-custom-border shadow-inner">
+            <div id="kvm-remote-screen" class="w-full h-full flex items-center justify-center">
+                <div class="text-[#63748A] text-sm leading-none font-normal italic flex flex-col items-center gap-3">
+                    <span class="animate-pulse">Initializing KVM stream...</span>
+                </div>
+            </div>
+            <div id="kvm-error-overlay" class="hidden absolute inset-0 bg-black/80 flex items-center justify-center z-10">
+                <p class="text-white text-sm">Connection lost. Reconnecting...</p>
             </div>
         </div>
     </div>

@@ -12,11 +12,11 @@
         {% endfor %}
     {% endif %}
 
-    <div>
+    <div class="nav-item-container">
         {# If the item has an active child, check the checkbox via JavaScript or Nunjucks logic #}
-        <input type="checkbox" id="{{ id }}" class="peer hidden" {% if hasActiveChild %}checked{% endif %}/>
+        <input type="checkbox" id="{{ id }}-toggle" class="peer hidden" {% if hasActiveChild %}checked{% endif %}/>
 
-        <label for="{{ id }}" 
+        <label for="{{ id }}-toggle" id="{{ id }}-label"
             class="relative w-full flex items-center justify-between pl-4 pr-3 py-3 cursor-pointer rounded-lg transition-all
                    {% if isCurrentPage or hasActiveChild %}
                         bg-brand-blue text-white
@@ -25,7 +25,7 @@
                    {% endif %}">
 
             {% if not isDropdown %}
-                <a href="{{ href }}" class="absolute inset-0 z-10"></a>
+                <a href="{{ href }}" id="link-{{ id }}" class="absolute inset-0 z-10"></a>
             {% endif %}
 
             <div class="flex items-center gap-2">
@@ -53,7 +53,10 @@
             <div class="hidden peer-checked:flex flex-col space-y-1 mt-1">
                 {% for item in subItems %}
                     {% set isSubActive = (currentPageUrl == item.href) %}
+                    {# Generate ID for each submenu item based on its text #}
+                    {% set subItemId = item.text | lower | replace(" ", "-") %}
                     <a href="{{ item.href }}" 
+                    id="link-{{ subItemId }}"
                        class="pl-10 py-3 text-sm leading-[18px] font-normal rounded-lg transition-colors
                               {% if isSubActive %}
                                 bg-brand-blue/10 text-black font-semibold

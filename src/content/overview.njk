@@ -14,17 +14,18 @@ permalink: "/"
         <div class="bg-white border border-custom-divider rounded-md p-4 mb-14 flex justify-between items-center">
             <div>
                 <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">BMC date and Time</p>
-                <p class="text-sm font-normal text-custom-text leading-[1.5]">2025-10-14 12:43 UTC</p>
+                <p id="val-bmc-date-time" class="text-sm font-normal text-custom-text leading-[1.5]">2025-10-14 12:43 UTC</p>
             </div>
-            <button class=" bg-brand-blue hover:bg-custom-hover-bg text-white px-8 py-2 rounded-[28px] flex items-center gap-2 transition-all active:scale-95">
+            <a href="/sol-console/" id="link-open-sol-console" 
+              class="bg-brand-blue hover:bg-custom-hover-bg text-white px-8 py-2 rounded-[28px] flex items-center gap-2 transition-all active:scale-95 w-fit">
                 <span class="text-sm font-medium leading-[120%]">SOL console</span>
                 <span class="flex items-center justify-center w-2 h-3 shrink-0">
                     {% include "src/assets/icons/icon-arrow-right-bold.svg" %}
                 </span>
-            </button>
+            </a>
         </div>
         {# TESTING Printed Circuit Board (PCB) code #}
-        <div>
+        <section id="hardware-monitor-section" class="mb-14">
             <div class="min-h-screen bg-gray-100 p-8 mb-4 font-sans">
                 <div class="max-w-6xl mx-auto">
                     <header class="mb-8 text-center">
@@ -87,7 +88,7 @@ permalink: "/"
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         {# / TESTING - end of  Printed Circuit Board (PCB) code#}
 
         {# Section: System information #}
@@ -96,147 +97,77 @@ permalink: "/"
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
 
                 {# Card: BMC Date and Time #}
-                <div class="bg-white border border-custom-divider rounded-md overflow-hidden">
+                <article id="card-bmc-info" class="bg-white border border-custom-divider rounded-md overflow-hidden">
                     <div class="flex justify-between items-center px-4 py-3 border-b border-custom-divider">
                         <span class="text-sm font-medium text-custom-text leading-[1.5]">BMC date and Time</span>
-                        <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
+                        <a href="/date-and-time/" id="link-view-more-bmc" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
                     </div>
                     <div class="px-4 py-3 grid grid-cols-2 gap-x-4 gap-y-3">
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Model</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-info-model" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Server manufacturer</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-info-manufacturer" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Serial number</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-info-serial" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 {# Card: Firmware information #}
-                <div class="bg-white border border-custom-divider rounded-md overflow-hidden">
+                <article id="card-firmware-info" class="bg-white border border-custom-divider rounded-md overflow-hidden">
                     <div class="flex justify-between items-center px-4 py-3 border-b border-custom-divider">
                         <span class="text-sm font-medium text-custom-text leading-[1.5]">Firmware information</span>
-                        <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
+                        <a href="/firmware/" id="link-view-more-firmware" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
                     </div>
                     <div class="px-4 py-3 grid grid-cols-2 gap-x-4 gap-y-3">
                         <div class="col-span-1">
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Running</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5] truncate">v09.05-21-ge66c49cdfe-dirty</p>
+                            <p id="val-firmware-running" class="text-sm font-normal text-custom-text leading-[1.5] truncate">v09.05-21-ge66c49cdfe-dirty</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Firmware version</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-firmware-version" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Backup</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-firmware-backup" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
                 {# Card: Network information #}
-                <div class="bg-white border border-custom-divider rounded-md overflow-hidden">
+                <article id="card-network-info" class="bg-white border border-custom-divider rounded-md overflow-hidden">
                     <div class="flex justify-between items-center px-4 py-3 border-b border-custom-divider">
                         <span class="text-sm font-medium text-custom-text leading-[1.5]">Network information</span>
-                        <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
+                        <a href="/network/" id="link-view-more-network" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
                     </div>
                     <div class="px-4 py-3 grid grid-cols-2 gap-x-4 gap-y-3">
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Hostname</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">ast2600-default</p>
+                            <p id="val-network-hostname" class="text-sm font-normal text-custom-text leading-[1.5]">ast2600-default</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Link status</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">NoLink</p>
+                            <p id="val-network-link-status" class="text-sm font-normal text-custom-text leading-[1.5]">NoLink</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">IPv4</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-network-ipv4" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">DHCPv4</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="val-network-dhcpv4" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
                     </div>
-                </div>
-
-                {# Card: Power information #}
-                <div class="bg-white border border-custom-divider rounded-md overflow-hidden">
-                    <div class="flex justify-between items-center px-4 py-3 border-b border-custom-divider">
-                        <span class="text-sm font-medium text-custom-text leading-[1.5]">Power information</span>
-                        <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
-                    </div>
-                    <div class="px-4 py-3 flex flex-col gap-y-3">
-                        <div>
-                            <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Power consumption</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">Not available</p>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Power cap</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">Disabled</p>
-                        </div>
-                    </div>
-                </div>
+                </article>
             </div>
         </section>
 
-        {# Section: Status information #}
-        <section class="mb-[62px]">
-            <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-4">Status information</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                {# Card: Event logs #}
-                <div class="bg-white border border-custom-divider rounded-md overflow-hidden">
-                    <div class="flex justify-between items-center px-4 py-3 border-b border-custom-divider">
-                        <span class="text-sm font-medium text-custom-text leading-[1.5]">Event logs</span>
-                        <div class="flex items-center gap-2">
-                            <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">Export All</a>
-                            <div class="w-[1px] h-[21px] bg-custom-divider"></div>
-                            <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
-                        </div>
-                    </div>
-                    <div class="px-4 py-3 grid grid-cols-2 gap-x-4">
-                        <div>
-                            <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Critical</p>
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm font-normal text-custom-text">12</span>
-                                <span class="flex items-center justify-center w-4 h-4 shrink-0">
-                                    {% include "src/assets/icons/icon-health-red.svg" %}
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Warning</p>
-                            <div class="flex items-center gap-2">
-                                <span class="text-sm font-normal text-custom-text">36</span>
-                                <span class="flex items-center justify-center w-4 h-4 shrink-0">
-                                    {% include "src/assets/icons/icon-warning-rounded.svg" %}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {# Card: Inventory and LEDs #}
-                <div class="bg-white border border-custom-divider rounded-md overflow-hidden">
-                    <div class="flex justify-between items-center px-4 py-3 border-b border-custom-divider">
-                        <span class="text-sm font-medium text-custom-text leading-[1.5]">Inventory and LEDs</span>
-                        <a href="#" class="text-sm font-medium text-brand-blue leading-[120%] hover:underline transition-all">View more</a>
-                    </div>
-                    <div class="px-4 py-3">
-                        <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">System identify LED</p>
-                        {# Toggle switch #}
-                        {{ toggle_switch(id="identifyLedToggle", label_text="Off", checked=false) }}
-                    </div>
-                </div>
-
-            </div>
-        </section>
     </div>
 {% endblock %}
 {% block scripts %}

@@ -8,25 +8,27 @@ permalink: /firmware/
         <section class="mb-14">
             <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-4">BMC and server</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-custom-aside-bg border border-custom-border rounded-md overflow-hidden">
+                {# Running Image Card #}
+                <div id="card-running-image" class="bg-custom-aside-bg border border-custom-border rounded-md overflow-hidden">
                     <div class="px-4 py-3 border-b border-custom-divider">
                         <span class="text-sm font-medium text-custom-text leading-[1.5]">Running image</span>
                     </div>
                     <div class="px-4 py-3">
                         <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Version</p>
-                        <p class="text-sm font-normal text-custom-text leading-[1.5]">v09.05-21-ge66c49cdfe-dirty</p>
+                        <p id="fw-running-version" class="text-sm font-normal text-custom-text leading-[1.5]">v09.05-21-ge66c49cdfe-dirty</p>
                     </div>
                 </div>
-                <div class="bg-custom-aside-bg border border-custom-border rounded-md overflow-hidden">
+                {# Backup Image Card #}
+                <div id="card-backup-image" class="bg-custom-aside-bg border border-custom-border rounded-md overflow-hidden">
                     <div class="px-4 py-3 border-b border-custom-divider">
                         <span class="text-sm font-medium text-custom-text leading-[1.5]">Backup image</span>
                     </div>
                     <div class="px-4 py-3 flex flex-col justify-between gap-7">
                         <div>
                             <p class="text-sm font-medium text-custom-text leading-[1.5] mb-1">Version</p>
-                            <p class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
+                            <p id="fw-backup-version" class="text-sm font-normal text-custom-text leading-[1.5]">--</p>
                         </div>
-                        <button class="flex items-center gap-2 text-custom-aside-text hover:text-brand-blue text-xs leading-none transition-colors">
+                        <button id="btn-switch-to-running" class="flex items-center gap-2 text-custom-aside-text hover:text-brand-blue text-xs leading-none transition-colors">
                             <span class="flex items-center justify-center w-4 h-4 shrink-0">
                                 {% include "src/assets/icons/icon-sync.svg" %}
                             </span>                            Switch to running
@@ -35,20 +37,23 @@ permalink: /firmware/
                 </div>
             </div>
         </section>
-        <section>
+        <section id="update-firmware-section">
             <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-4">Update firmware</h2>
             <div class="max-w-[410px] bg-custom-light-bg p-6">
                 <h3 class="text-base font-medium leading-[21px] text-custom-text mb-2">Upload Firmware File</h3>
-                <p class="text-sm font-normal leading-[1.5] text-custom-text mb-4">Drag & drop or click to add</p>
+                <p class="text-sm font-normal leading-[1.5] text-custom-text mb-4">Drag &amp; drop or click to add</p>
                 <div class="flex gap-3">
                     <button
                         type="button"
+                         id="btn-add-fw-file"
                         class="px-[62px] py-3 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-none font-normal rounded-full
                               transition-all active:scale-95">
                         Add file
                     </button>
                     <button
-                        type="button"                         
+                        type="button"   
+                        id="btn-start-fw-update"
+                        disabled                      
                         class="px-[46px] py-3 bg-transparent hover:bg-white border border-brand-blue text-brand-blue text-sm leading-none font-normal 
                             rounded-full transition-all active:scale-95">
                         Start update
