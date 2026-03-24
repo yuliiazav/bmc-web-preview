@@ -11,14 +11,14 @@ permalink: /user-management/
         </div>
         <div class="flex justify-end items-center">
             <div class="flex gap-4">
-                <button class="flex items-center gap-2 text-sm text-brand-blue hover:text-custom-accent font-medium">
+                <button id="btn-open-policy-settings" class="flex items-center gap-2 text-sm text-brand-blue hover:text-custom-accent font-medium">
                     <span class="flex items-center justify-center w-4 h-4 shrink-0">
                         {% include "src/assets/icons/icon-settings.svg" %}
                     </span>
                 Account policy settings
                 </button>
 
-                <button class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px] transition-all active:scale-95">
+                <button  id="btn-open-add-user" class="flex items-center gap-2 px-4 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm leading-[120%] font-medium rounded-[28px] transition-all active:scale-95">
                     <span class="flex items-center text-white justify-center w-4 h-4 shrink-0">
                         {% include "src/assets/icons/icon-plus.svg" %}
                     </span>
@@ -143,6 +143,166 @@ permalink: /user-management/
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="modal-overlay" class="fixed inset-0 bg-black/40 z-[60] hidden backdrop-blur-[2px] transition-opacity duration-300"></div>
+    {# Modal for adding a new user #}
+    <div id="modal-add-user" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-full max-w-[640px] z-[70] hidden rounded-[16px] shadow-xl overflow-hidden">
+        <div class="flex justify-between items-center px-6 py-4 border-b border-custom-divider bg-custom-light-bg">
+            <h3 class="text-lg font-bold text-custom-text">Add user</h3>
+            <button class="close-modal text-custom-aside-text hover:text-custom-text transition-colors text-2xl leading-none">&times;</button>
+        </div>
+
+        <div class="p-8">
+            <div class="grid grid-cols-2 gap-x-12 gap-y-6">
+                <div>
+                    <div>
+                        <span class="block text-sm font-medium text-custom-text mb-2">Account status</span>
+                        <div class="flex flex-col gap-2 mb-6">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="radio" name="acc-status" value="Enabled" checked 
+                                   class="w-4 h-4 text-brand-blue border-custom-divider focus:ring-brand-blue">
+                                <span class="text-sm text-custom-text group-hover:text-brand-blue transition-colors">Enabled</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="radio" name="acc-status" value="Disabled" 
+                                   class="w-4 h-4 text-brand-blue border-custom-divider focus:ring-brand-blue">
+                                <span class="text-sm text-custom-text group-hover:text-brand-blue transition-colors">Disabled</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label for="new-user-name-add-input" class="text-sm font-medium text-custom-text">Username</label>
+                        <p class="text-[11px] text-custom-aside-text leading-[130%]">Cannot start with a number. No special characters except underscore.</p>
+                        <input type="text" id="new-user-name-add-input" placeholder="Enter username"
+                           class="w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm transition-all">
+                        <div role="alert" class="invalid-feedback">
+                            <!---->
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2 mt-4">
+                        <label for="new-user-privilege" class="text-sm font-medium text-custom-text">Privilege</label>
+                        <select id="new-user-privilege" 
+            class="w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm bg-white cursor-pointer text-custom-aside-text transition-colors">
+                            <option disabled="disabled" selected value="">Select an option</option>
+                            <option class="text-custom-text" value="Administrator">Administrator</option>
+                            <option class="text-custom-text" value="Operator">Operator</option>
+                            <option class="text-custom-text" value="ReadOnly">ReadOnly</option>
+                        </select>
+                        <div role="alert" class="invalid-feedback">
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex flex-col gap-2 mb-4">
+                        <label class="text-sm font-medium text-custom-text">User password</label>
+                        <p class="text-[11px] text-custom-aside-text leading-[130%]">Password must be between 8 - 20 characters</p>
+                        <div class="relative flex items-center">
+                            <input type="password" id="newuser-password" 
+                               class="input-password-toggle-container password-input w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm pr-12">
+                            <div role="alert" class="invalid-feedback">
+                                <!---->
+                            </div>
+                            <button type="button" class="password-toggle absolute right-4 text-brand-blue hover:text-custom-hover-bg transition-all">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <line x1="3" y1="21" x2="21" y2="3" class="slash-line opacity-0 transition-opacity duration-200"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-medium text-custom-text">Confirm user password</label>
+                        <div class="relative flex items-center">
+                            <input type="password" id="newuser-password-confirmation" 
+                               class="input-password-toggle-container password-input w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm pr-12">
+                            <div role="alert" class="invalid-feedback">
+                                <!---->
+                            </div>
+                            <button type="button" class="password-toggle absolute right-4 text-brand-blue hover:text-custom-hover-bg transition-all">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <line x1="3" y1="21" x2="21" y2="3" class="slash-line opacity-0 transition-opacity duration-200"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-end gap-3 px-6 py-4 bg-custom-light-bg border-t border-custom-divider">
+            <button class="close-modal px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
+            <button id="btn-create-user" class="px-6 py-2 text-sm font-medium bg-brand-blue text-white rounded-full hover:bg-custom-hover-bg shadow-md transition-all active:scale-95">Add user</button>
+        </div>
+    </div>
+    {# Modal for account policy settings #}
+    <div id="modal-policy-settings" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-full max-w-[580px] z-[70] hidden rounded-[16px] shadow-xl overflow-hidden">
+        <div class="flex justify-between items-center px-6 py-4 border-b border-custom-divider bg-custom-light-bg">
+            <h3 class="text-lg font-bold text-custom-text ">Account policy settings</h3>
+            <button class="close-modal text-custom-aside-text hover:text-custom-text transition-colors text-2xl leading-none">&times;</button>
+        </div>
+
+        <div class="p-8 grid grid-cols-2 gap-12">
+            <div class="flex flex-col gap-2">
+                <label for="lockout-threshold" class="text-sm font-medium text-custom-text">Max failed login attempts</label>
+                <p id="lockout-threshold-help-block" class="text-[11px] text-custom-aside-text leading-[130%]">
+            Value must be between 0 – 65535
+        </p>
+                <input type="number" 
+               id="lockout-threshold" 
+               value="0" 
+               min="0" 
+               max="65535"
+               aria-describedby="lockout-threshold-help-block"
+               class="w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm">
+                <div role="alert" class="text-red-500 text-[10px] hidden">Value must be between 0 – 65535</div>
+            </div>
+
+            <div>
+                <span class="block text-sm font-medium text-custom-text mb-2">User unlock method</span>
+                <div class="flex flex-col gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="radio" 
+           name="unlock-method" 
+           value="Manual" 
+           id="unlock-manual"
+           checked
+           class="w-4 h-4 text-brand-blue border-custom-divider focus:ring-brand-blue">
+                        <span class="text-sm text-custom-text group-hover:text-brand-blue transition-colors">Manual</span>
+                    </label>
+
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="radio" 
+           name="unlock-method" 
+           value="Automatic after timeout" 
+           id="unlock-automatic"
+           class="w-4 h-4 text-brand-blue border-custom-divider focus:ring-brand-blue">
+                        <span class="text-sm text-custom-text group-hover:text-brand-blue transition-colors">Automatic after timeout</span>
+                    </label>
+                </div>
+
+                <div class="flex flex-col gap-2 mt-4 opacity-50 pointer-events-none" id="timeout-input-container">
+                    <label for="lockout-duration" class="text-sm font-medium text-custom-text">Timeout duration (seconds)</label>
+                    <input type="number" 
+           id="lockout-duration" 
+           disabled
+           class="w-full px-4 py-2 border border-custom-divider rounded-lg text-sm bg-gray-50 focus:outline-none focus:border-brand-blue">
+                    <div id="timeout-error" class="text-red-500 text-[10px] hidden">Must be at least 1</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-end gap-3 px-6 py-4 bg-custom-light-bg border-t border-custom-divider">
+            <button class="close-modal px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
+            <button class="px-6 py-2 text-sm font-medium bg-brand-blue text-white rounded-full hover:bg-custom-hover-bg shadow-md transition-all active:scale-95">Save</button>
         </div>
     </div>
 {% endblock %}

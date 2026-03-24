@@ -11,19 +11,30 @@ permalink: /sessions/
         </div>
 
         <div class="flex justify-start mb-6">
-            {# Search #}
             {{ search_input(id="sessionsSearch", placeholder="Search sessions") }}
         </div>
 
+        {# Toolbar #}
+        <div id="sessions-toolbar" class="hidden flex items-center justify-between bg-brand-blue/70 text-white px-6 py-2 rounded-t-sm transition-all">
+            <p id="selected-count" class="text-sm font-medium">1 Selected</p>
+            <div class="flex gap-4">
+                <button id="btn-bulk-disconnect" class="px-4 py-1 bg-white text-brand-blue text-sm font-medium rounded-full hover:bg-gray-100 transition-colors active:scale-95">
+                    Disconnect
+                </button>
+                <button id="btn-cancel-selection" class="px-4 py-1 border border-white text-white text-sm font-medium rounded-full hover:bg-white/10 transition-colors active:scale-95">
+                    Cancel
+                </button>
+            </div>
+        </div>
+
         <div class="bg-white border border-custom-divider rounded-sm overflow-hidden shadow-sm">
-            <table class="w-full text-left border-collapse table-fixed">
+            <table id="sessions-table" class="w-full text-left border-collapse table-fixed">
                 <thead class="bg-custom-light-bg border-b border-custom-divider sticky top-0 z-10">
                     <tr>
-                        <th class="px-6 py-4 w-[24px]">
-                            <input type="checkbox" 
-               style="accent-color: var(--color-custom-accent);"
-               class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors
-                      focus:ring-[var(--color-custom-accent)] focus:ring-offset-0">
+                        <th class="px-6 py-4 w-[60px]">
+                            <input type="checkbox" id="select-all-sessions"
+                                   style="accent-color: var(--color-custom-accent);"
+                                   class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors focus:ring-offset-0">
                         </th>
                         <th class="px-4 py-4 text-sm font-medium text-custom-text leading-none">Session ID</th>
                         <th class="px-4 py-4 text-sm font-medium text-custom-text leading-none">User</th>
@@ -33,23 +44,16 @@ permalink: /sessions/
                 </thead>
                 <tbody class="divide-y divide-custom-divider">
                     <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4">
-                            <input type="checkbox" 
-               style="accent-color: var(--color-custom-accent);"
-               class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors
-                      focus:ring-[var(--color-custom-accent)] focus:ring-offset-0">
+                        <td class="px-6 py-3">
+                            <input type="checkbox" name="session-select"
+                                   style="accent-color: var(--color-custom-accent);"
+                                   class="w-4 h-4 rounded border-custom-divider cursor-pointer transition-colors focus:ring-offset-0">
                         </td>
-                        <td class="px-4 py-4 text-sm font-normal text-custom-text break-words">
-                            w1yNsQwKyj
-                        </td>
-                        <td class="px-4 py-4 text-sm font-normal text-custom-text">
-                            root
-                        </td>
-                        <td class="px-4 py-4 text-sm font-normal text-custom-text">
-                            192.168.120.249
-                        </td>
-                        <td class="px-4 py-4 text-sm font-medium text-right">
-                            <button class="text-brand-blue hover:underline">Disconnect</button>
+                        <td class="px-4 py-3 text-sm font-normal text-custom-text break-words">w1yNsQwKyj</td>
+                        <td class="px-4 py-3 text-sm font-normal text-custom-text">root</td>
+                        <td class="px-4 py-3 text-sm font-normal text-custom-text">192.168.120.249</td>
+                        <td class="px-4 py-3 text-sm font-medium text-right">
+                            <button class="text-brand-blue hover:underline btn-single-disconnect">Disconnect</button>
                         </td>
                     </tr>
                 </tbody>
@@ -86,4 +90,33 @@ permalink: /sessions/
             </div>
         </div>
     </div>
+    {# Modal: Confirm Disconnect #}
+    <div id="modal-confirm-disconnect" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
+
+        <div class="bg-white rounded-[16px] shadow-2xl w-full max-w-[480px] overflow-hidden transition-all">
+
+            <div class="flex justify-between items-center px-6 py-4 border-b border-custom-divider bg-custom-light-bg">
+                <h3 class="text-lg font-bold text-custom-text">Disconnect session</h3>
+                <button class="close-modal text-custom-aside-text hover:text-custom-text transition-colors text-2xl leading-none">&times;</button>
+            </div>
+
+            <div class="p-8 text-center">
+                <p id="disconnect-modal-text" class="text-sm text-custom-text leading-relaxed">
+                Are you sure you want to disconnect <span class="font-bold text-brand-blue">1</span> session? This action cannot be undone.
+            </p>
+            </div>
+
+            <div class="flex justify-end gap-3 px-6 py-4 bg-custom-light-bg border-t border-custom-divider">
+                <button class="close-modal px-6 py-2 text-sm font-medium bg-custom-text/10 text-custom-text rounded-full hover:bg-custom-text/20 transition-all">
+                Cancel
+            </button>
+                <button id="confirm-disconnect-action" class="px-6 py-2 text-sm font-medium bg-brand-blue text-white rounded-full hover:bg-custom-hover-bg shadow-md transition-all active:scale-95">
+                Disconnect
+            </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/js/sessions.js" defer></script>
 {% endblock %}

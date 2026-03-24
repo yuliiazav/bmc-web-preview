@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal-confirm-action");
   const modalTitle = document.getElementById("modal-title");
   const modalDesc = document.getElementById("modal-description");
@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Setup action configurations
   const actions = {
-    "btn-reboot-bmc": {
+    "btn-reboot-ipdesk": {
       title: "Confirm Reboot",
-      text: "Are you sure you want to reboot the BMC?",
+      text: "Are you sure you want to reboot the IPDesk?",
       btnClass: "bg-brand-blue", // Blue button for important but not dangerous actions
       hoverClass: "hover:bg-custom-hover-bg",
-      action: () => console.log("Rebooting BMC..."),
+      action: () => console.log("Rebooting IPDesk..."),
     },
     "btn-remote-pc-off": {
       title: "Power Off PC",
@@ -68,3 +68,4 @@ document.addEventListener("DOMContentLoaded", () => {
     closeModal();
   });
 });
+

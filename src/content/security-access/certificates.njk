@@ -30,13 +30,48 @@ permalink: /certificates/
                         <th class="p-4 font-medium">Issued to</th>
                         <th class="p-4 font-medium">Valid from</th>
                         <th class="p-4 font-medium">Valid until</th>
+                        <th class="p-4 font-medium w-[150px]"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b border-custom-divider">
-                        <td colspan="5" class="p-12 text-center text-stone-700 italic bg-white">
-                        No items available
-                    </td>
+                    <tr class="empty-row hidden border-b border-custom-divider">
+                        <td colspan="6" class="p-12 text-center text-stone-700 italic bg-white">
+                    No items available
+                </td>
+                    </tr>
+                    <tr class="border-b border-custom-divider hover:bg-gray-50 transition-colors">
+                        <td class="px-4 py-4 font-normal text-custom-text">HTTPS Certificate</td>
+                        <td class="px-4 py-4 font-normal text-custom-text">testhost</td>
+                        <td class="px-4 py-4 font-normal text-custom-text">testhost</td>
+                        <td class="px-4 py-4 font-normal text-custom-text text-nowrap">2026-02-21</td>
+                        <td class="px-4 py-4 font-normal text-custom-text text-nowrap">2036-02-21</td>
+                        <td class="px-4 py-4">
+                            <div class="flex items-center justify-center gap-2">
+
+                                {# Button: Replace Certificate #}
+                                <div class="relative group">
+                                    <button class="p-2 text-brand-blue hover:bg-brand-blue/10 rounded-lg transition-all active:scale-90">
+                                        {% include "src/assets/icons/icon-refresh.svg" %}
+                                    </button>
+                                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max px-2 py-1 bg-custom-text/60 text-white text-[10px] rounded shadow-lg z-20">
+                                Replace certificate
+                                <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-custom-text"></span>
+                                    </span>
+                                </div>
+
+                                {# Button: Delete Certificate #}
+                                <div class="relative group">
+                                    <button class="p-2 text-custom-aside-text hover:text-red-500 hover:bg-red-50 rounded-lg transition-all active:scale-90">
+                                        {% include "src/assets/icons/icon-trash.svg" %}
+                                    </button>
+                                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block w-max px-2 py-1 bg-custom-text/60 text-white text-[10px] rounded shadow-lg z-20">
+                                Delete certificate
+                                <span class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-custom-text"></span>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

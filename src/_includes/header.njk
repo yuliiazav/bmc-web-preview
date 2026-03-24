@@ -3,11 +3,11 @@
         <div class="flex items-center gap-3">
             {% set badgeClass = "flex items-center gap-2 px-4 py-2 border border-custom-border rounded-full font-normal text-sm bg-white cursor-pointer hover:bg-custom-light-bg transition-all active:scale-95 outline-none focus:ring-1 focus:ring-brand-blue" %}
 
-            <a href="/manage-bmc/" id="header-appHeader-remotehost" class="{{ badgeClass }}">
+            <a href="/manage-ipdesk/" id="header-appHeader-remotehost" class="{{ badgeClass }}">
                 <span class="flex items-center justify-center shrink-0">
                     {% include "src/assets/icons/icon-appHeader-remotehost.svg" %}
                 </span>
-                <span class="truncate">rebootBMC</span>
+                <span class="truncate">reboot IPDesk</span>
             </a>
         </div>
 
@@ -44,5 +44,5 @@
         </div>
     </div>
 
-    <div class="w-full border-b border-custom-divider mt-1"></div>
+    <div class="w-full border-b border-custom-divider mt-2"></div>
 </header>

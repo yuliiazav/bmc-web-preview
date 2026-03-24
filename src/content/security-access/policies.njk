@@ -11,15 +11,15 @@ permalink: /policies/
 
         <div class="space-y-0 divide-y divide-custom-divider border-b border-custom-divider">
 
-            {# BMC Shell (via SSH) #}
+            {# IPDesk Shell (via SSH) #}
             <div class="py-4 flex justify-between items-start gap-10">
                 <div class="flex flex-col gap-1">
-                    <h3 class="text-sm font-medium text-custom-text">BMC shell (via SSH)</h3>
+                    <h3 class="text-sm font-medium text-custom-text">IPDesk shell (via SSH)</h3>
                     <p class="text-sm font-normal text-custom-aside-text leading-relaxed">
-                        Allow access to shell sessions via SSH, through port 22 on the BMC.
+                        Allow access to shell sessions via SSH, through port 22 on the IPDesk.
                     </p>
                 </div>
-                {{ toggle_switch("policy-ssh", "Enabled", true) }}
+                {{ toggle_switch("sshSwitch", "Enabled", true) }}
             </div>
 
             {# Network IPMI #}
@@ -30,7 +30,7 @@ permalink: /policies/
                         Allow remote management of the platform via IPMI. Tools such as ipmitool require this setting to be enabled.
                     </p>
                 </div>
-                {{ toggle_switch("policy-ipmi", "Enabled", true) }}
+                {{ toggle_switch("ipmiSwitch", "Enabled", true) }}
             </div>
 
             {# VirtualTPM #}
@@ -41,7 +41,7 @@ permalink: /policies/
                         Enabling vTPM makes a TPM available to the guest operating system.
                     </p>
                 </div>
-                {{ toggle_switch("policy-vtpm", "Disabled", false) }}
+                {{ toggle_switch("vtpmSwitch", "Disabled", false) }}
             </div>
 
             {# RTAD #}
@@ -52,7 +52,7 @@ permalink: /policies/
                         This option enables or disables the Remote Trusted Attestation Daemon for host firmware.
                     </p>
                 </div>
-                {{ toggle_switch("policy-rtad", "Disabled", false) }}
+                {{ toggle_switch("rtadSwitch", "Disabled", false) }}
             </div>
 
             {# Web Session Timeout #}
@@ -65,7 +65,7 @@ permalink: /policies/
                 </div>
 
                 <div class="relative min-w-[140px]">
-                    <select class="w-full appearance-none bg-custom-light-bg border border-custom-divider text-custom-text text-sm rounded-full px-5 py-2.5 pr-10 focus:outline-none cursor-pointer">
+                    <select  id="session-timeout-options" class="w-full appearance-none bg-custom-light-bg border border-custom-divider text-custom-text text-sm rounded-full px-5 py-2.5 pr-10 focus:outline-none cursor-pointer">
                         <option selected>15 Minutes</option>
                         <option >1 Hour</option>
                         <option>2 Hours</option>
@@ -83,4 +83,8 @@ permalink: /policies/
 
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/policies.js" defer></script>
 {% endblock %}

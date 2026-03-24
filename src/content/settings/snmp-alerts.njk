@@ -46,27 +46,33 @@ permalink: /snmp-alerts/
             </table>
         </div>
     </div>
-
+    {# Modal for adding SNMP destination #}
     <div id="modal-add-snmp" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[540px] overflow-hidden">
-            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+        <div class="bg-white rounded-[16px] shadow-2xl w-full max-w-[540px] overflow-hidden">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg">
                 <h3 class="text-lg font-bold text-custom-text">Add SNMP alert destination</h3>
                 <button class="modal-close-snmp text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
             </div>
 
             <div class="p-8 grid grid-cols-2 gap-6">
                 <div class="col-span-1">
-                    <label for="input-snmp-ip" class="block text-xs font-medium text-custom-aside-text mb-2">IP address</label>
-                    <input type="text" id="input-snmp-ip" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none transition-colors" placeholder="0.0.0.0">
+                    <label for="snmp-ip-add-input" class="block text-xs font-medium text-custom-text mb-2">IP address</label>
+                    <input type="text" id="snmp-ip-add-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none transition-colors">
+                    <div role="alert" class="invalid-feedback">
+                        <!---->
+                    </div>
                 </div>
                 <div class="col-span-1">
-                    <label for="input-snmp-port" class="block text-xs font-medium text-custom-aside-text mb-2">Port - optional</label>
-                    <input type="text" id="input-snmp-port" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none transition-colors" placeholder="162">
+                    <label for="snmp-port-add-input" class="block text-xs font-medium text-custom-text mb-2">Port - optional</label>
+                    <input type="text" id="snmp-port-add-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none transition-colors">
+                    <div role="alert" class="invalid-feedback">
+                        <!---->
+                    </div>
                 </div>
             </div>
 
-            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
-                <button class="modal-close-snmp px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+            <div class="px-6 py-4 bg-custom-light-bg border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close-snmp px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
                 <button id="btn-save-snmp" class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all active:scale-95">Add destination</button>
             </div>
         </div>
@@ -74,35 +80,5 @@ permalink: /snmp-alerts/
 {% endblock %}
 
 {% block scripts %}
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('modal-add-snmp');
-            const openBtn = document.getElementById('btn-add-snmp-destination');
-            const closeBtns = document.querySelectorAll('.modal-close-snmp');
-
-            const openModal = () => {
-                modal
-                    .classList
-                    .remove('hidden');
-            };
-
-            const closeModal = () => {
-                modal
-                    .classList
-                    .add('hidden');
-            };
-
-            openBtn.addEventListener('click', openModal);
-
-            closeBtns.forEach(btn => {
-                btn.addEventListener('click', closeModal);
-            });
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) 
-                    closeModal();
-                }
-            );
-        });
-    </script>
+    <script src="/js/snmp-alerts.js" defer></script>
 {% endblock %}

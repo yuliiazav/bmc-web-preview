@@ -9,7 +9,7 @@ permalink: /network/
     <div class="mx-auto">
         <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-2">Network</h1>
         <p class="text-base font-normal text-custom-aside-text leading-none mb-14">
-            Configure BMC network settings
+            Configure IPDesk network settings
         </p>
 
         <section class="mb-16">
@@ -28,13 +28,16 @@ permalink: /network/
                 {% set switches = [
                     {
                         label: "Use domain name",
-                        id: "domain"
+                        id: "domain",
+                        checked: false
                     }, {
                         label: "Use DNS servers",
-                        id: "dns"
+                        id: "dns",
+                        checked: true
                     }, {
                         label: "Use NTP servers",
-                        id: "ntp"
+                        id: "ntp",
+                        checked: true
                     }
                 ] %}
 
@@ -44,10 +47,10 @@ permalink: /network/
                             {{ switch.label }}
                         </span>
                         {{ toggle_switch(
-                            id = "switch-" + switch.id, 
-                            label_text = "Enabled", 
-                            checked = switch.checked 
-                        ) }}
+            id = "switch-" + switch.id, 
+            label_text = "Enabled" if switch.checked else "Disabled", 
+            checked = switch.checked 
+        ) }}
                     </div>
                 {% endfor %}
             </div>
@@ -167,98 +170,98 @@ permalink: /network/
     {# formattin, adding ip addressesmodals, updates msg #}
     {#modal for editing hostname #}
     <div id="modal-edit-field" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[440px] overflow-hidden transition-all">
-            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+        <div class="bg-white rounded-[16px] shadow-2xl w-full max-w-[440px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg">
                 <h3 id="edit-modal-title" class="text-lg font-bold text-custom-text">Edit hostname</h3>
                 <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
             </div>
             <div class="p-8">
-                <label id="edit-modal-label" class="block text-xs font-medium text-custom-aside-text mb-2">Hostname</label>
+                <label id="edit-modal-label" for="edit-modal-input" class="block text-xs font-medium text-custom-text mb-2">Hostname</label>
                 <input type="text" id="edit-modal-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm">
+                <div role="alert" class="invalid-feedback"></div>
             </div>
-            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
-                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+            <div class="px-6 py-4 bg-custom-light-bg border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
                 <button id="btn-save-field" class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all">Add</button>
             </div>
         </div>
     </div>
     {# Modal for disable DHCP #}
     <div id="modal-disable-dhcp" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[440px] overflow-hidden transition-all">
-            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+        <div class="bg-white rounded-[16px] shadow-2xl w-full max-w-[440px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg">
                 <h3 class="text-lg font-bold text-custom-text">Disable DHCP</h3>
                 <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
             </div>
             <div class="p-8">
                 <p class="text-sm text-custom-text">Are you sure you want to disable DHCP?</p>
             </div>
-            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
-                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+            <div class="px-6 py-4 bg-custom-light-bg border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
                 <button id="btn-confirm-disable-dhcp" class="px-8 py-2.5 bg-[#D62F2F] hover:bg-red-700 text-white text-sm font-medium rounded-full shadow-md transition-all">Disable</button>
             </div>
         </div>
     </div>
     {# Modal for adding static IPv4 address #}
     <div id="modal-dns-address-ip" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[540px] overflow-hidden transition-all">
-            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+        <div class="bg-white rounded-[16px] shadow-2xl w-full max-w-[540px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg">
                 <h3 class="text-lg font-bold text-custom-text">Add IP address</h3>
                 <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
             </div>
             <div class="p-8 grid grid-cols-2 gap-6">
                 <div class="col-span-1">
-                    <label class="block text-xs font-medium text-custom-aside-text mb-2">Static DNS</label>
-                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <label for="static-dns-add-input" class="block text-xs font-medium text-custom-text mb-2">Static DNS</label>
+                    <input type="text" id="static-dns-add-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <div role="alert" class="invalid-feedback">
+                        <!---->
+                    </div>
                 </div>
             </div>
-            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
-                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+            <div class="px-6 py-4 bg-custom-light-bg border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
                 <button class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all">Add</button>
             </div>
         </div>
     </div>
     {# Modal for adding static IPv4 address #}
     <div id="modal-ipv4-address-ip" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/50 backdrop-blur-sm px-4">
-        <div class="bg-white rounded-[24px] shadow-2xl w-full max-w-[540px] overflow-hidden transition-all">
-            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg/30">
+        <div class="bg-white rounded-[16px] shadow-2xl w-full max-w-[540px] overflow-hidden transition-all">
+            <div class="px-6 py-4 border-b border-custom-divider flex justify-between items-center bg-custom-light-bg">
                 <h3 class="text-lg font-bold text-custom-text">Add static IPv4 address</h3>
                 <button class="modal-close text-custom-aside-text hover:text-custom-text text-2xl leading-none">&times;</button>
             </div>
             <div class="p-8 grid grid-cols-2 gap-6">
                 <div class="col-span-1">
-                    <label class="block text-xs font-medium text-custom-aside-text mb-2">IP address</label>
-                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <label for="ipv4-address-add-input" class="block text-xs font-medium text-custom-text mb-2">IP address</label>
+                    <input type="text" id="ipv4-address-add-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <div role="alert" class="invalid-feedback">
+                        <!---->
+                    </div>
                 </div>
                 <div class="col-span-1">
-                    <label class="block text-xs font-medium text-custom-aside-text mb-2">Gateway</label>
-                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <label for="gateway-add-input" class="block text-xs font-medium text-custom-text mb-2">Gateway</label>
+                    <input type="text" id="gateway-add-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <div role="alert" class="invalid-feedback">
+                        <!---->
+                    </div>
+
                 </div>
                 <div class="col-span-2">
-                    <label class="block text-xs font-medium text-custom-aside-text mb-2">Subnet mask</label>
-                    <input type="text" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <label for="subnet-mask-add-input" class="block text-xs font-medium text-custom-text mb-2">Subnet mask</label>
+                    <input type="text" id="subnet-mask-add-input" class="w-full px-4 py-3 border border-custom-divider rounded-lg text-sm focus:border-brand-blue outline-none">
+                    <div role="alert" class="invalid-feedback">
+                        <!---->
+                    </div>
                 </div>
             </div>
-            <div class="px-6 py-4 bg-custom-light-bg/30 border-t border-custom-divider flex justify-end gap-3">
-                <button class="modal-close px-6 py-2.5 bg-custom-light-bg hover:bg-custom-divider text-brand-blue text-sm font-medium rounded-full transition-all">Cancel</button>
+            <div class="px-6 py-4 bg-custom-light-bg border-t border-custom-divider flex justify-end gap-3">
+                <button class="modal-close px-6 py-2 text-sm font-medium bg-custom-text/30 text-white rounded-full hover:bg-custom-text/50 transition-all active:scale-95">Cancel</button>
                 <button class="px-8 py-2.5 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all">Add</button>
             </div>
         </div>
     </div>
-    {#toasts #}
-    <div id="success-toast" class="fixed top-6 right-6 z-[110] hidden transform transition-all duration-300 translate-x-10 opacity-0">
-        <div class="bg-[#E9F7EF] border-l-4 border-[#23C45F] p-4 rounded-r-lg shadow-lg flex items-start gap-4 min-w-[320px]">
-            <div class="flex-shrink-0 text-[#23C45F]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-            </div>
-            <div class="flex-grow">
-                <p class="text-sm font-bold text-custom-text">Success</p>
-                <p id="toast-message" class="text-xs text-custom-aside-text">Successfully updated settings.</p>
-            </div>
-            <button onclick="hideToast()" class="text-custom-aside-text hover:text-custom-text text-lg leading-none">&times;</button>
-        </div>
-    </div>
+
 {% endblock %}
 {% block scripts %}
     <script src="/js/network.js" defer></script>

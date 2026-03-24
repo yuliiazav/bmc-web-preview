@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Smart-AVI Dashboard</title>
+        <title>IPDesk Dashboard</title>
+        <link rel="icon" type="image/svg+xml" href="/assets/images/smartAVI-favicon.png">
         <link rel="stylesheet" href="/css/style.css">
         <link
             rel="stylesheet"
@@ -24,6 +25,21 @@
             <script src="/js/main.js" defer></script>
             {# Page-specific scripts #}
             {% block scripts %}{% endblock %}
+        </div>
+        {# Toasts #}
+        <div id="success-toast" class="fixed top-6 right-6 z-[110] hidden transform transition-all duration-300 translate-x-10 opacity-0">
+            <div class="bg-[#E9F7EF] border-l-4 border-[#23C45F] p-4 rounded-r-lg shadow-lg flex items-start gap-4 min-w-[320px]">
+                <div class="flex-shrink-0 text-[#23C45F]">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <p class="text-sm font-bold text-custom-text">Success</p>
+                    <p id="toast-message" class="text-xs text-custom-aside-text">Successfully updated settings.</p>
+                </div>
+                <button onclick="hideToast()" class="text-custom-aside-text hover:text-custom-text text-lg leading-none">&times;</button>
+            </div>
         </div>
     </body>
 </html>

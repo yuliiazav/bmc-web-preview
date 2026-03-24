@@ -1,0 +1,107 @@
+---
+permalink: /profile-settings/
+---
+{% extends "../_includes/index.njk" %}
+
+{% block content %}
+    <div class="mx-auto">
+        <h1 class="text-[32px] font-medium text-custom-text leading-[130%] tracking-normal mb-8">Profile settings</h1>
+
+        <section class="mb-12">
+            <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-4">Profile information</h2>
+            <div class="flex flex-col gap-1">
+                <span class="text-sm font-medium text-custom-text">Username</span>
+                <span id="val-username" class="text-sm font-normal text-custom-aside-text">root</span>
+            </div>
+        </section>
+
+        <section class="mb-12 max-w-[400px]">
+            <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-4">Change password</h2>
+
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-2">
+                    <label for="current-password" class="text-sm font-medium text-custom-text">Current password</label>
+                    <div class="relative flex items-center">
+                        <input id="current-password" type="password" 
+                           class="password-input w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm pr-12">
+                        <button type="button" class="password-toggle absolute right-4 text-brand-blue hover:text-custom-hover-bg transition-all">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <line x1="3" y1="21" x2="21" y2="3" class="slash-line opacity-0 transition-opacity duration-200"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label for="new-password" class="text-sm font-medium text-custom-text">New password</label>
+                    <p class="text-xs text-custom-aside-text -mt-1">Password must be between 8 - 20 characters</p>
+                    <div class="relative flex items-center">
+                        <input id="new-password" type="password" 
+                           class="password-input w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm pr-12">
+                        <button type="button" class="password-toggle absolute right-4 text-brand-blue hover:text-custom-hover-bg transition-all">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <line x1="3" y1="21" x2="21" y2="3" class="slash-line opacity-0 transition-opacity duration-200"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label for="confirm-password" class="text-sm font-medium text-custom-text">Confirm new password</label>
+                    <div class="relative flex items-center">
+                        <input id="confirm-password" type="password" 
+                           class="password-input w-full px-4 py-2 border border-custom-divider rounded-lg focus:outline-none focus:border-brand-blue text-sm pr-12">
+                        <button type="button" class="password-toggle absolute right-4 text-brand-blue hover:text-custom-hover-bg transition-all">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <line x1="3" y1="21" x2="21" y2="3" class="slash-line opacity-0 transition-opacity duration-200"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-xl font-medium text-custom-text leading-[130%] mb-4">Timezone display preference</h2>
+            <p class="text-sm text-custom-text mb-6">Select how time is displayed throughout the application</p>
+
+            <div class="flex flex-col gap-4">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="radio" 
+                   name="timezone-preference" 
+                   id="timezone-utc" 
+                   value="UTC" 
+                   checked 
+                   class="w-4 h-4 text-brand-blue border-custom-divider focus:ring-brand-blue">
+                    <span class="text-base text-custom-text group-hover:text-brand-blue transition-colors">
+                Default (UTC)
+            </span>
+                </label>
+
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="radio" 
+                   name="timezone-preference" 
+                   id="timezone-browser" 
+                   value="BROWSER" 
+                   class="w-4 h-4 text-brand-blue border-custom-divider focus:ring-brand-blue">
+                    <span class="text-base text-custom-text group-hover:text-brand-blue transition-colors">
+                Browser offset (PDT UTC-7)
+            </span>
+                </label>
+            </div>
+        </section>
+
+        <button id="btn-save-profile-settings" class="w-[180px] h-[40px] py-2 bg-brand-blue hover:bg-custom-hover-bg text-white text-sm font-medium rounded-full shadow-md transition-all active:scale-95 flex items-center justify-center">
+        Save settings
+    </button>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/js/profile-settings.js" defer></script>
+{% endblock %}
